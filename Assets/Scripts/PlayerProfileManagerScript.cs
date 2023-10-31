@@ -20,22 +20,42 @@ public class PlayerProfileManagerScript : MonoBehaviour
     {
         
     }
+
+    //adds a new device profile if that inputdevice is unique
     public static void AddProfile(InputDevice newDevice)
     {
-        profiles.Add(new PlayerProfile(newDevice));
+        if(!ContainsDevice(newDevice))
+        {
+            profiles.Add(new PlayerProfile(newDevice));
+        }
+        
 
+    }
+
+    //checks if the profiles array already has a profile with this input device
+    private static bool ContainsDevice(InputDevice newDevice)
+    {
+        for(int i = 0;i < profiles.Count;i++)
+        {
+            if (profiles[i].GetInputDevice() == newDevice)
+            {
+                return true;
+            }
+        }
+
+
+        return false;
     }
     private void InitializePlayers()
     {
         for(int i = 0;i < profiles.Count;i++)
         {
-            Debug.Log("hit");
             GetComponent<PlayerInputManager>().JoinPlayer(i, i, "", profiles[i].GetInputDevice());
         }
     }
 }
 
-
+//contains all the information connecting a player to an input device
 public class PlayerProfile
 {
     private InputDevice device;
