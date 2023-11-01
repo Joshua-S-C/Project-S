@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     private Vector2 MovementInput;
     private bool isGrounded;
     private Vector2 aimDirection;
+    private Vector2 lastAimDirection;
     public float jumpHeight;
     public float groundAccelerationSpeed;
     public float airAccelerationSpeed;
@@ -27,8 +28,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckShootPressedKeyboard();
         CalculateAimDirection();
     }
+
     private void FixedUpdate()
     {
         Movement();
@@ -121,7 +124,16 @@ public class PlayerScript : MonoBehaviour
     }    
     private void UpdateAim()
     {
-        weaponOrigin.transform.right = aimDirection;
+        if(aimDirection == Vector2.zero)
+        {
+            weaponOrigin.transform.right = lastAimDirection;
+        }
+        else
+        {
+            weaponOrigin.transform.right = aimDirection;
+            lastAimDirection = aimDirection;
+        }
+        
     }
 
 
@@ -141,5 +153,24 @@ public class PlayerScript : MonoBehaviour
     public void AimPressed(InputAction.CallbackContext context)
     {
         aimDirection = context.ReadValue<Vector2>();
+    }
+    public void ShootPressed(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon();
+        }
+    }
+    private void CheckShootPressedKeyboard()
+    {
+        
+        if (GetComponent<PlayerInput>().devices[0].description.deviceClass == "Keyboard")
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon();
+            }
+        }
+        
     }
 }

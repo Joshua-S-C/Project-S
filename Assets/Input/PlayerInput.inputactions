@@ -57,7 +57,7 @@
                 {
                     "name": "",
                     "id": "2be0f3ba-1d0d-4f1f-9654-7ad314cd3f25",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -145,7 +145,7 @@
                 {
                     "name": "",
                     "id": "0bf593b0-0987-4d13-a23c-dd74ba0b0bec",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
