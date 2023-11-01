@@ -18,6 +18,6 @@ public class PlayButtonScript : MonoBehaviour
     }
     public void OnPress()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Stage");
     }
 }
