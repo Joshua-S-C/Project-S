@@ -17,6 +17,9 @@ public class PlayerScript : MonoBehaviour
     public float maxSpeed;
     public float groundDeccelerationSpeed;
     public float airDeccelerationSpeed;
+
+    private bool movementDisabled;
+    private float movementDisabledTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,7 @@ public class PlayerScript : MonoBehaviour
     {
         CheckShootPressedKeyboard();
         CalculateAimDirection();
+        MovementDisabledTimerTick();
     }
 
     private void FixedUpdate()
@@ -37,9 +41,33 @@ public class PlayerScript : MonoBehaviour
         Movement();
         
     }
+    private bool CheckCanMove()
+    {
+        if(!movementDisabled)
+        {
+            return true;
+        }
+        return false;
+    }
     public void SetGrounded(bool newState)
     {
         isGrounded = newState;
+    }
+    public void DisableMovement(float duration)
+    {
+        movementDisabled = true;
+        movementDisabledTimer = duration;
+    }
+    private void MovementDisabledTimerTick()
+    {
+        if(movementDisabled)
+        {
+            movementDisabledTimer -= Time.deltaTime;
+            if(movementDisabledTimer <= 0)
+            {
+                movementDisabled = false;
+            }
+        }
     }
     private void Jump()
     {
@@ -78,12 +106,22 @@ public class PlayerScript : MonoBehaviour
             }
 
             //moves player based on buttons pressed
-            RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+            if(CheckCanMove())
+            {
+                RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+            }
+            
 
             //checks if player speed is higher than the stick axis
             if ((MovementInput.x > 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x < maxSpeed * MovementInput.x))
             {
-                RB.velocity = new Vector2(maxSpeed * MovementInput.x, RB.velocity.y);
+                RB.velocity -= (Vector2)transform.right * accelerationAmount * MovementInput;
+                if ((MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x))
+                {
+                    RB.velocity = new Vector2(maxSpeed * MovementInput.x, RB.velocity.y);
+                }
+
+                    
             }
         }
 

@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockback: 30
   yDivideAmount: 3
+  playerMovementDisabledDuration: 0.25
 --- !u!1 &8624080617171281991
 GameObject:
   m_ObjectHideFlags: 0
