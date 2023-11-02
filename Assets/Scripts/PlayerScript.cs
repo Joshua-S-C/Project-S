@@ -49,7 +49,19 @@ public class PlayerScript : MonoBehaviour
     private void Respawn()
     {
         lives--;
-        transform.position = respawnPosition;
+        if(lives == 0)
+        {
+            Die();
+        }
+        else
+        {
+            transform.position = respawnPosition;
+        }
+        
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
     }
     private void CheckOnScreen()
     {
