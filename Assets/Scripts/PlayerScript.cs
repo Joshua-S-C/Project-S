@@ -158,7 +158,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(context.performed)
         {
-            transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon();
+            transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
         }
     }
     private void CheckShootPressedKeyboard()
@@ -168,7 +168,7 @@ public class PlayerScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon();
+                transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
             }
         }
         

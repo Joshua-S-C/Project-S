@@ -45,15 +45,17 @@ public class WeaponScript : MonoBehaviour
         }
         return true;
     }
-    public void Shoot()
+    public void Shoot(GameObject player)
     {
         if(CheckCanShoot())
         {
-            isFireDelayTimer = true;
+            StartFireDelayTimer();
             GameObject firedObject = Instantiate(ammo,GameObject.Find("ShotThings").transform);
             firedObject.transform.position = transform.position;
             firedObject.transform.rotation = transform.rotation;
             firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
+            firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+
         }
     }
 }

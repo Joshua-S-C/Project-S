@@ -16,8 +16,8 @@ public class WeaponOriginScript : MonoBehaviour
     {
         
     }
-    public void ShootWeapon()
+    public void ShootWeapon(GameObject player)
     {
-        weapon.GetComponent<WeaponScript>().Shoot();
+        weapon.GetComponent<WeaponScript>().Shoot(player);
     }    
 }

@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2603215161933751535, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.67
       objectReference: {fileID: 0}
     - target: {fileID: 2603215161933751535, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -237,6 +237,18 @@ PrefabInstance:
     - target: {fileID: 2603215161933751535, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738347858837323853, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_GravityScale
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775458767304543128, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775458767304543128, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1643425101
       objectReference: {fileID: 0}
     - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: airDeccelerationSpeed
@@ -400,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: {fileID: 8624080617171281991, guid: 82839ad9a8e26d346b0d65c56ccc902a, type: 3}
-  fireDelay: 1
+  fireDelay: 0.4
   fireVelocity: 30
 --- !u!1 &1687783236
 GameObject:

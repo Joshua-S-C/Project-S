@@ -5,14 +5,15 @@ using UnityEngine;
 public class AmmoScript : MonoBehaviour
 {
     private bool canHit = false;
-    private float hitDelay = 0.01f;
+    private float selfPlayerHitDelay = 0.1f;
+    private GameObject selfPlayer;
     public bool explodable;
     public float knockback;
     private List<GameObject> hitableObjects;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Collider2D>().enabled = false;
+        
         hitableObjects = new List<GameObject>();
     }
 
@@ -25,13 +26,18 @@ public class AmmoScript : MonoBehaviour
     {
         if(!canHit)
         {
-            hitDelay -= Time.deltaTime;
-            if(hitDelay <= 0)
+            selfPlayerHitDelay -= Time.deltaTime;
+            if(selfPlayerHitDelay <= 0)
             {
                 canHit = true;
-                GetComponent<Collider2D>().enabled = true;
+                Physics2D.IgnoreCollision(selfPlayer.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
             }
         }
+    }
+    public void AddSelfPlayer(GameObject player)
+    {
+        selfPlayer = player;
+        Physics2D.IgnoreCollision(selfPlayer.GetComponent<Collider2D>(),GetComponent<Collider2D>(),true);
     }
     private void HitObject(GameObject newObject)
     {
@@ -41,6 +47,7 @@ public class AmmoScript : MonoBehaviour
         }
         if(newObject.tag == "Player")
         {
+            Debug.Log("direct");
             newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * knockback;
         }
         Destroy(gameObject);

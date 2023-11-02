@@ -6,6 +6,7 @@ public class ExplosionScript : MonoBehaviour
 {
     private List<GameObject> explodeableObjects;
     public float knockback;
+    public float yDivideAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +24,9 @@ public class ExplosionScript : MonoBehaviour
         {
             Vector2 distance = explodeableObjects[i].transform.position - transform.position;
             Vector2 direction = distance.normalized;
+            direction = new Vector2(direction.x, direction.y / yDivideAmount);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity += direction * knockback;
-            Debug.Log((direction));
+            
         }
     }
 

@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 20
+  knockback: 30
+  yDivideAmount: 3
 --- !u!1 &8624080617171281991
 GameObject:
   m_ObjectHideFlags: 0
