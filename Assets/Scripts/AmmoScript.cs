@@ -21,6 +21,7 @@ public class AmmoScript : MonoBehaviour
     void Update()
     {
         HitDelayTimerTick();
+        CheckOffMap();
     }
     private void HitDelayTimerTick()
     {
@@ -32,6 +33,13 @@ public class AmmoScript : MonoBehaviour
                 canHit = true;
                 Physics2D.IgnoreCollision(selfPlayer.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
             }
+        }
+    }
+    private void CheckOffMap()
+    {
+        if(transform.position.magnitude > 40)
+        {
+            Destroy(gameObject);
         }
     }
     public void AddSelfPlayer(GameObject player)

@@ -18,11 +18,15 @@ public class PlayerScript : MonoBehaviour
     public float groundDeccelerationSpeed;
     public float airDeccelerationSpeed;
 
+    public int lives;
+    private Vector2 respawnPosition;
+
     private bool movementDisabled;
     private float movementDisabledTimer;
     // Start is called before the first frame update
     void Start()
     {
+        respawnPosition = transform.position;
         RB = GetComponent<Rigidbody2D>();
         weaponOrigin = transform.Find("WeaponOrigin").gameObject;
         PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>().devices[0]);
@@ -34,12 +38,25 @@ public class PlayerScript : MonoBehaviour
         CheckShootPressedKeyboard();
         CalculateAimDirection();
         MovementDisabledTimerTick();
+        CheckOnScreen();
     }
 
     private void FixedUpdate()
     {
         Movement();
         
+    }
+    private void Respawn()
+    {
+        lives--;
+        transform.position = respawnPosition;
+    }
+    private void CheckOnScreen()
+    {
+        if(!GetComponent<SpriteRenderer>().isVisible)
+        {
+            Respawn();
+        }
     }
     private bool CheckCanMove()
     {
