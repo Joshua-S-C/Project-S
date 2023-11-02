@@ -105,24 +105,37 @@ public class PlayerScript : MonoBehaviour
                 accelerationAmount = airAccelerationSpeed * Time.deltaTime;
             }
 
-            //moves player based on buttons pressed
-            if(CheckCanMove())
-            {
-                RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
-            }
+            float hypotheticalXVelocity = RB.velocity.x + (accelerationAmount * MovementInput.x);
+
+            
             
 
             //checks if player speed is higher than the stick axis
-            if ((MovementInput.x > 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x < maxSpeed * MovementInput.x))
+            if ((MovementInput.x > 0 && hypotheticalXVelocity > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && hypotheticalXVelocity < maxSpeed * MovementInput.x))
             {
-                RB.velocity -= (Vector2)transform.right * accelerationAmount * MovementInput;
-                if ((MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x))
+                if((MovementInput.x > 0 && RB.velocity.x < maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x))
                 {
                     RB.velocity = new Vector2(maxSpeed * MovementInput.x, RB.velocity.y);
                 }
-
-                    
+                
             }
+            if ((MovementInput.x > 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x < maxSpeed * MovementInput.x))
+            {
+                if (CheckCanMove() && (Mathf.Sign(MovementInput.x) != Mathf.Sign(RB.velocity.x)))
+                {
+                    RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+                }
+            }
+            else
+            {
+                //moves player based on buttons pressed
+                if (CheckCanMove())
+                {
+                    RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+                }
+            }
+
+                
         }
 
         
