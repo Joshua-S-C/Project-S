@@ -48,9 +48,10 @@ public class PlayerProfileManagerScript : MonoBehaviour
     }
     private void InitializePlayers()
     {
-        for(int i = 0;i < profiles.Count;i++)
+        for (int i = 0;i < profiles.Count;i++)
         {
-            GetComponent<PlayerInputManager>().JoinPlayer(i, i, "", profiles[i].GetInputDevice());
+            PlayerInput input = GetComponent<PlayerInputManager>().JoinPlayer(i, i, "", profiles[i].GetInputDevice());
+            GetComponent<PlayerManagerScript>().PlayerJoinedGame(input.gameObject);
         }
     }
 }

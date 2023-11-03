@@ -251,6 +251,18 @@ PrefabInstance:
       value: 1643425101
       objectReference: {fileID: 0}
     - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: lives
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: bounds.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: bounds.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: airDeccelerationSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -377,81 +389,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &659187821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 659187822}
-  - component: {fileID: 659187824}
-  - component: {fileID: 659187823}
-  m_Layer: 5
-  m_Name: PlayerScoreboard
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &659187822
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659187821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 978397739}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -100, y: -150}
-  m_SizeDelta: {x: 150, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &659187823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659187821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &659187824
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659187821}
-  m_CullTransparentMesh: 1
 --- !u!1 &978397738
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,8 +417,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 659187822}
+  m_Children: []
   m_Father: {fileID: 1088064391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -501,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b16917589ce120489447ddd68237e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreCardPrefab: {fileID: 7937262053210831577, guid: 15c7bd5f0d622cf439a07d2120046cf0, type: 3}
 --- !u!1 &1088064387
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +799,7 @@ GameObject:
   - component: {fileID: 2077564540}
   - component: {fileID: 2077564539}
   - component: {fileID: 2077564541}
+  - component: {fileID: 2077564542}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -882,19 +820,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2077564541}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2077564542}
+        m_TargetAssemblyTypeName: PlayerManagerScript, Assembly-CSharp
+        m_MethodName: PlayerJoinedGame
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -952,6 +891,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c6acca933889b4d9c7e8cea18cd58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2077564542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077564538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5517afb4ce81c546a635565acdf5ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreCardManager: {fileID: 978397738}
+  playerColors:
+  - {r: 0.9829347, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.05374103, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.10349083, a: 1}
+  - {r: 0, g: 0.0013723373, b: 1, a: 1}
+  playerStartPositions:
+  - {x: -15, y: 0}
+  - {x: 15, y: 0}
+  - {x: 7.5, y: 0}
+  - {x: -7.5, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

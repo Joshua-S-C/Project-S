@@ -23,10 +23,12 @@ public class PlayerScript : MonoBehaviour
 
     private bool movementDisabled;
     private float movementDisabledTimer;
+
+    public Vector2 bounds;
     // Start is called before the first frame update
     void Start()
     {
-        respawnPosition = transform.position;
+        respawnPosition = new Vector2(0,10);
         RB = GetComponent<Rigidbody2D>();
         weaponOrigin = transform.Find("WeaponOrigin").gameObject;
         PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>().devices[0]);
@@ -38,7 +40,7 @@ public class PlayerScript : MonoBehaviour
         CheckShootPressedKeyboard();
         CalculateAimDirection();
         MovementDisabledTimerTick();
-        CheckOnScreen();
+        CheckOffScreen();
     }
 
     private void FixedUpdate()
@@ -48,26 +50,34 @@ public class PlayerScript : MonoBehaviour
     }
     private void Respawn()
     {
-        lives--;
-        if(lives == 0)
-        {
-            Die();
-        }
-        else
-        {
-            transform.position = respawnPosition;
-        }
+        
+         transform.position = respawnPosition;
+         RB.velocity = Vector2.zero;
+        
         
     }
     private void Die()
     {
         Destroy(gameObject);
     }
-    private void CheckOnScreen()
+    private void CheckDead()
     {
-        if(!GetComponent<SpriteRenderer>().isVisible)
+        GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCard(gameObject, lives);
+        if (lives <= 0)
+        {
+            Die();
+        }
+        else
         {
             Respawn();
+        }
+    }
+    private void CheckOffScreen()
+    {
+        if(Mathf.Abs(transform.position.x) > bounds.x || Mathf.Abs(transform.position.y) > bounds.y)
+        {
+            lives--;
+            CheckDead();
         }
     }
     private bool CheckCanMove()
