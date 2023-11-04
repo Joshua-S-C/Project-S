@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ScoreboardManagerScript : MonoBehaviour
 {
     public GameObject scoreCardPrefab;
     private List<ScoreCard> scoreCards;
+    public float scoreCardYPosition;
+    private int playersAlive;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,31 +34,32 @@ public class ScoreboardManagerScript : MonoBehaviour
     }
     public void AddScoreCard(GameObject player)
     {
+        playersAlive++;
         if(scoreCards.Count < 4)
         {
             ScoreCard newCard = new ScoreCard(Instantiate(scoreCardPrefab, transform), player);
             scoreCards.Add(newCard);
             if (scoreCards.Count == 1)
             {
-                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -160);
+                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(0, scoreCardYPosition);
             }
             if (scoreCards.Count == 2)
             {
-                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, -160);
-                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(60, -160);
+                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, scoreCardYPosition);
+                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(60, scoreCardYPosition);
             }
             if (scoreCards.Count == 3)
             {
-                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-120, -160);
-                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -160);
-                scoreCards[2].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(120, -160);
+                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-120, scoreCardYPosition);
+                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(0, scoreCardYPosition);
+                scoreCards[2].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(120, scoreCardYPosition);
             }
             if (scoreCards.Count == 3)
             {
-                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -160);
-                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, -160);
-                scoreCards[2].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(60, -160);
-                scoreCards[3].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(180, -160);
+                scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, scoreCardYPosition);
+                scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, scoreCardYPosition);
+                scoreCards[2].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(60, scoreCardYPosition);
+                scoreCards[3].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(180, scoreCardYPosition);
             }
 
         }
@@ -66,11 +71,32 @@ public class ScoreboardManagerScript : MonoBehaviour
         if(card != null)
         {
             card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCard(lives);
+            if(lives == 0)
+            {
+                playersAlive--;
+                if(playersAlive == 1)
+                {
+                    GameObject alivePlayer = GetFirstAlivePlayer();
+                    EndScreenScript.EndScreen(Instantiate(alivePlayer),alivePlayer.GetComponent<PlayerInput>().playerIndex);
+                }
+            }
         }
 
 
     }
+    private GameObject GetFirstAlivePlayer()
+    {
+        for(int i = 0;i < scoreCards.Count;i++)
+        {
+            if (scoreCards[i].GetIsAlive())
+            {
+                return scoreCards[i].GetPlayer();
+            }
+        }
+        return null;
+    }
 }
+
 
 
 public class ScoreCard
@@ -90,5 +116,9 @@ public class ScoreCard
     public GameObject GetPlayer()
     {
         return player;
+    }
+    public bool GetIsAlive()
+    {
+        return scoreCard.GetComponent<ScoreCardScript>().GetIsAlive();
     }
 }

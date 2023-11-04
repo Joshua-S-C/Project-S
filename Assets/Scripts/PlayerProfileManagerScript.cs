@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Hardware;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerProfileManagerScript : MonoBehaviour
 {
@@ -22,11 +24,12 @@ public class PlayerProfileManagerScript : MonoBehaviour
     }
 
     //adds a new device profile if that inputdevice is unique
-    public static void AddProfile(InputDevice newDevice)
+    public static void AddProfile(PlayerInput input)
     {
-        if(!ContainsDevice(newDevice))
+        if (input.devices.Count > 0 && !ContainsDevice(input.devices[0]))
         {
-            profiles.Add(new PlayerProfile(newDevice));
+            string name = "Player " + (input.playerIndex + 1);
+            profiles.Add(new PlayerProfile(input.devices[0],name));
         }
         
 
@@ -51,8 +54,16 @@ public class PlayerProfileManagerScript : MonoBehaviour
         for (int i = 0;i < profiles.Count;i++)
         {
             PlayerInput input = GetComponent<PlayerInputManager>().JoinPlayer(i, i, "", profiles[i].GetInputDevice());
-            GetComponent<PlayerManagerScript>().PlayerJoinedGame(input.gameObject);
+            if(SceneManager.GetActiveScene().name != "Main Menu")
+            {
+                GetComponent<PlayerManagerScript>().PlayerJoinedGame(input.gameObject);
+            }
+            
         }
+    }
+    public static PlayerProfile GetProfile(int index)
+    {
+        return profiles[index];
     }
 }
 
@@ -60,13 +71,21 @@ public class PlayerProfileManagerScript : MonoBehaviour
 public class PlayerProfile
 {
     private InputDevice device;
+    private string playerName;
+    int index;
 
-    public PlayerProfile(InputDevice newDevice)
+    public PlayerProfile(InputDevice newDevice,string name)
     {
         device = newDevice;
+        playerName = name;
+        
     }
     public InputDevice GetInputDevice()
     {
         return device;
+    }
+    public string GetName()
+    {
+        return playerName;
     }
 }

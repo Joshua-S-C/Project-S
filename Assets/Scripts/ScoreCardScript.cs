@@ -6,6 +6,7 @@ public class ScoreCardScript : MonoBehaviour
 {
     private List<GameObject> lifeBubbles;
     private GameObject deathMask;
+    private bool playerAlive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +27,14 @@ public class ScoreCardScript : MonoBehaviour
             if(lives == 0)
             {
                 deathMask.SetActive(true);
+                playerAlive = false;
             }
         }
         
+    }
+    public bool GetIsAlive()
+    {
+        return playerAlive;
     }
     private void GetLifeBubbles()
     {

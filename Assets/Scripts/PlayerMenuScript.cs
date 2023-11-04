@@ -8,7 +8,7 @@ public class PlayerMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>().devices[0]);
+        PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>());
     }
 
     // Update is called once per frame

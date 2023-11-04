@@ -25,13 +25,14 @@ public class PlayerScript : MonoBehaviour
     private float movementDisabledTimer;
 
     public Vector2 bounds;
+
     // Start is called before the first frame update
     void Start()
     {
         respawnPosition = new Vector2(0,10);
         RB = GetComponent<Rigidbody2D>();
         weaponOrigin = transform.Find("WeaponOrigin").gameObject;
-        PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>().devices[0]);
+        PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>());
     }
      
     // Update is called once per frame
@@ -263,4 +264,6 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
+
+
 }
