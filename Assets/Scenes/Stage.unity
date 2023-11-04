@@ -907,7 +907,7 @@ MonoBehaviour:
   scoreCardManager: {fileID: 978397738}
   playerColors:
   - {r: 0.9829347, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.05374103, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.98664236, a: 1}
   - {r: 0, g: 1, b: 0.10349083, a: 1}
   - {r: 0, g: 0.0013723373, b: 1, a: 1}
   playerStartPositions:

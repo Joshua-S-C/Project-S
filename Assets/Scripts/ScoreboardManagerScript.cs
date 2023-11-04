@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ScoreboardManagerScript : MonoBehaviour
 {
@@ -108,6 +109,7 @@ public class ScoreCard
     {
         this.scoreCard = scoreCard;
         this.player = player;
+        scoreCard.GetComponent<Image>().color = player.GetComponent<SpriteRenderer>().color;
     }
     public GameObject GetScoreCard()
     {
