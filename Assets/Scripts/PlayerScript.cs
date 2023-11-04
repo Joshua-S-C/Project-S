@@ -9,9 +9,12 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D RB;
     private Vector2 MovementInput;
     private bool isGrounded;
+    private bool canDoubleJump;
+    private int jumpCount;
     private Vector2 aimDirection;
     private Vector2 lastAimDirection;
     public float jumpHeight;
+    public float doubleJumpHeight;
     public float groundAccelerationSpeed;
     public float airAccelerationSpeed;
     public float maxSpeed;
@@ -92,6 +95,7 @@ public class PlayerScript : MonoBehaviour
     public void SetGrounded(bool newState)
     {
         isGrounded = newState;
+        canDoubleJump = true;
     }
     public void DisableMovement(float duration)
     {
@@ -111,19 +115,20 @@ public class PlayerScript : MonoBehaviour
     }
     private void Jump()
     {
-        if(CheckCanJump())
+        if(isGrounded)
         {
             RB.velocity += (Vector2)transform.up * jumpHeight;
         }
-        
-    }
-    private bool CheckCanJump()
-    {
-        if(isGrounded)
+        else
         {
-            return true;
+            if(canDoubleJump)
+            {
+                canDoubleJump = false;
+                RB.velocity = new Vector2(RB.velocity.x,doubleJumpHeight);
+                GetComponent<PlayerParticleScript>().DoubleJumpParticle();
+            }
         }
-        return false;
+        
     }
     private void Movement()
     {

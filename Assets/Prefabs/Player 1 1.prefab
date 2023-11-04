@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2353622889203416151}
   - component: {fileID: 2458217519445971946}
   - component: {fileID: 2738347858837323853}
+  - component: {fileID: 7464171629960085580}
   m_Layer: 0
   m_Name: Player 1 1
   m_TagString: Player
@@ -103,11 +104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 20
+  doubleJumpHeight: 0
   groundAccelerationSpeed: 110
   airAccelerationSpeed: 60
   maxSpeed: 15
   groundDeccelerationSpeed: 30
   airDeccelerationSpeed: 10
+  lives: 0
+  bounds: {x: 0, y: 0}
 --- !u!114 &2353622889203416151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +256,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &7464171629960085580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159860262129296680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd93378ef846e4889dec4befaed862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubleJumpParticle: {fileID: 1064280510003000798, guid: a10f9eb9cf8d1014c955ea596cfa6e52, type: 3}
 --- !u!1 &4453754712560660618
 GameObject:
   m_ObjectHideFlags: 0
