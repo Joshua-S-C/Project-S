@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
+    private DashScript myDashScript;
+
     private GameObject weaponOrigin;
     private Rigidbody2D RB;
     private Vector2 MovementInput;
@@ -20,11 +22,12 @@ public class PlayerScript : MonoBehaviour
     public float maxSpeed;
     public float groundDeccelerationSpeed;
     public float airDeccelerationSpeed;
-
+    
     public int lives;
     private Vector2 respawnPosition;
 
     private bool movementDisabled;
+    private bool isMovementDisabledTimer;
     private float movementDisabledTimer;
 
     public Vector2 bounds;
@@ -36,6 +39,8 @@ public class PlayerScript : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         weaponOrigin = transform.Find("WeaponOrigin").gameObject;
         PlayerProfileManagerScript.AddProfile(GetComponent<PlayerInput>());
+
+        myDashScript = GetComponent<DashScript>();
     }
      
     // Update is called once per frame
@@ -45,12 +50,12 @@ public class PlayerScript : MonoBehaviour
         CalculateAimDirection();
         MovementDisabledTimerTick();
         CheckOffScreen();
+        
     }
 
     private void FixedUpdate()
     {
         Movement();
-        
     }
     private void Respawn()
     {
@@ -100,16 +105,29 @@ public class PlayerScript : MonoBehaviour
     public void DisableMovement(float duration)
     {
         movementDisabled = true;
+        isMovementDisabledTimer = true;
         movementDisabledTimer = duration;
+    }
+    public void DisableMovement()
+    {
+
+        Debug.Log("disabled");
+        movementDisabled = true;
+    }
+    public void EnableMovement()
+    {
+        Debug.Log("enabled");
+        movementDisabled = false;
     }
     private void MovementDisabledTimerTick()
     {
-        if(movementDisabled)
+        if(isMovementDisabledTimer)
         {
             movementDisabledTimer -= Time.deltaTime;
             if(movementDisabledTimer <= 0)
             {
                 movementDisabled = false;
+                isMovementDisabledTimer = false;
             }
         }
     }
@@ -130,9 +148,14 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
+    public void SetSpeedMovementInput()
+    {
+        RB.velocity = new Vector2(MovementInput.x * maxSpeed, RB.velocity.y);
+    }
+    
     private void Movement()
     {
-        if(MovementInput == Vector2.zero)
+        if(MovementInput == Vector2.zero && !myDashScript.GetIsDashing())
         {
             //deccelerates player when no movement is done
             Decceleration();
@@ -250,6 +273,13 @@ public class PlayerScript : MonoBehaviour
     {
         aimDirection = context.ReadValue<Vector2>();
     }
+    public void DashPressed(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            myDashScript.Dash(MovementInput);
+        }
+    }
     public void ShootPressed(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -269,6 +299,7 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
+
 
 
 }

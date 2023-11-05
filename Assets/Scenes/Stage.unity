@@ -202,7 +202,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 16257139-aa51-4cac-834c-09aa291e208c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Player/Dash[/Keyboard/leftShift,/XInputControllerWindows/buttonWest]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
@@ -210,7 +226,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 323772428}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 323772428}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
@@ -218,15 +242,31 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShootPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DashPressed
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353622889203416151, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2603215161933751535, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
@@ -294,6 +334,18 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: dashSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: dashCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      propertyPath: dashDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479497598256237818, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: doubleJumpHeight
       value: 10
       objectReference: {fileID: 0}
@@ -313,6 +365,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 159860262129296680, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 323772435}
     - targetCorrespondingSourceObject: {fileID: 7180779241687193117, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1471885838}
@@ -336,6 +391,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a050c9470442f438c22bcb3925597b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &323772435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323772424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e0a600f007d0b4994a5b6a45f85df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 5
+  dashSpeed: 35
+  dashCooldown: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
