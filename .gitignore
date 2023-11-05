@@ -124,3 +124,6 @@ crashlytics-build.properties
 
 # GNU/Linux specials
 .directory
+
+# Ignore project version
+/ProjectSettings/ProjectVersion.txt
