@@ -15,9 +15,12 @@ public class DashScript : MonoBehaviour
     private Vector2 dashLastPosition;
     public float dashCooldown;
     private float dashCooldownTimer;
+    public float dashEndSpeed;
+    private GameObject scoreBoardManager;
     // Start is called before the first frame update
     void Start()
     {
+        scoreBoardManager = GameObject.Find("ScoreboardManager");
         RB = GetComponent<Rigidbody2D>();
     }
 
@@ -34,8 +37,7 @@ public class DashScript : MonoBehaviour
     {
         if(canDash && input != Vector2.zero)
         {
-            dashDirection = (new Vector2(input.x, 0)).normalized;
-            Debug.Log(dashDirection);
+            dashDirection = (new Vector2(input.x, input.y)).normalized;
             dashDistanceCovered = 0;
             canDash = false;
             isDashing = true;
@@ -51,13 +53,13 @@ public class DashScript : MonoBehaviour
             RB.velocity = dashDirection * dashSpeed;
             dashDistanceCovered += ((Vector2)transform.position - dashLastPosition).magnitude;
             dashLastPosition = transform.position;
-            Debug.Log(dashDistanceCovered);
+            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardCooldowns(gameObject);
             if (dashDistanceCovered > dashDistance)
             {
-                isDashing = false;
-                GetComponent<PlayerScript>().SetSpeedMovementInput();
-                dashCooldownTimer = dashCooldown;
-                GetComponent<PlayerScript>().EnableMovement();
+                StopDash();
+                RB.velocity = dashEndSpeed * dashDirection;
+                
+                
             }
         }
     }
@@ -65,12 +67,19 @@ public class DashScript : MonoBehaviour
     {
         if (!canDash && !isDashing)
         {
+            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardCooldowns(gameObject);
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer <= 0)
             {
                 canDash = true;
             }
         }
+    }
+    public void StopDash()
+    {
+        isDashing = false;
+        dashCooldownTimer = dashCooldown;
+        GetComponent<PlayerScript>().EnableMovement();
     }
 
     public bool GetIsDashing()
@@ -80,6 +89,19 @@ public class DashScript : MonoBehaviour
     public bool GetCanDash()
     {
         return canDash;
+    }
+    public float CalculateDashRatio()
+    {
+        float ratio = 0;
+        if(isDashing)
+        {
+            ratio = dashDistanceCovered / dashDistance;
+        }
+        if(!canDash)
+        {
+            ratio = dashCooldownTimer / dashCooldown;
+        }
+        return ratio; 
     }
 
 }

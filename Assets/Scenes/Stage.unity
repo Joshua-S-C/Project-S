@@ -360,7 +360,7 @@ PrefabInstance:
     - target: {fileID: 7464171629960085580, guid: 111acd207d7be4441b5139400d55ff21, type: 3}
       propertyPath: doubleJumpParticle
       value: 
-      objectReference: {fileID: 1064280510003000798, guid: a10f9eb9cf8d1014c955ea596cfa6e52, type: 3}
+      objectReference: {fileID: 6423043468957595825, guid: 8e48a190c51dada4cb20cdf51c83cb10, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -406,6 +406,7 @@ MonoBehaviour:
   dashDistance: 5
   dashSpeed: 35
   dashCooldown: 10
+  dashEndSpeed: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b16917589ce120489447ddd68237e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreCardPrefab: {fileID: 7937262053210831577, guid: 15c7bd5f0d622cf439a07d2120046cf0, type: 3}
+  scoreCardPrefab: {fileID: 1244133071526537252, guid: 4b63f0afda17f724294ecb12097a65da, type: 3}
   scoreCardYPosition: -130
 --- !u!1 &1088064387
 GameObject:

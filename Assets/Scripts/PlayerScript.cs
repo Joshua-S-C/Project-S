@@ -71,7 +71,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void CheckDead()
     {
-        GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCard(gameObject, lives);
+        GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardLives(gameObject, lives);
         if (lives <= 0)
         {
             Die();
@@ -110,14 +110,15 @@ public class PlayerScript : MonoBehaviour
     }
     public void DisableMovement()
     {
-
-        Debug.Log("disabled");
         movementDisabled = true;
     }
     public void EnableMovement()
     {
-        Debug.Log("enabled");
         movementDisabled = false;
+    }
+    public void PlayerHit()
+    {
+        myDashScript.StopDash();
     }
     private void MovementDisabledTimerTick()
     {
@@ -142,15 +143,19 @@ public class PlayerScript : MonoBehaviour
             if(canDoubleJump)
             {
                 canDoubleJump = false;
-                RB.velocity = new Vector2(RB.velocity.x,doubleJumpHeight);
+                if(RB.velocity.y > 0)
+                {
+                    RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight + RB.velocity.y);
+                }
+                else
+                {
+                    RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight);
+                }
+                
                 GetComponent<PlayerParticleScript>().DoubleJumpParticle();
             }
         }
         
-    }
-    public void SetSpeedMovementInput()
-    {
-        RB.velocity = new Vector2(MovementInput.x * maxSpeed, RB.velocity.y);
     }
     
     private void Movement()

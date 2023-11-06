@@ -66,13 +66,15 @@ public class ScoreboardManagerScript : MonoBehaviour
         }
         
     }
-    public void UpdateScoreCard(GameObject player,int lives)
+    public void UpdateScoreCardLives(GameObject player,int lives)
     {
         ScoreCard card = GetScoreCard(player);
         if(card != null)
         {
-            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCard(lives);
-            if(lives == 0)
+            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardLives(lives);
+
+
+            if (lives == 0)
             {
                 playersAlive--;
                 if(playersAlive == 1)
@@ -84,6 +86,14 @@ public class ScoreboardManagerScript : MonoBehaviour
         }
 
 
+    }
+    public void UpdateScoreCardCooldowns(GameObject player)
+    {
+        ScoreCard card = GetScoreCard(player);
+        if (card != null)
+        {
+            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardCooldowns(player.GetComponent<DashScript>().CalculateDashRatio());
+        }
     }
     private GameObject GetFirstAlivePlayer()
     {
