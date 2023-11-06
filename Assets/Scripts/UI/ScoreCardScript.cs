@@ -47,8 +47,11 @@ public class ScoreCardScript : MonoBehaviour
     {
         lifeBubbles = new List<GameObject>();
         GameObject bubbleParent = transform.Find("LifeBubbles").gameObject;
-        lifeBubbles.Add(bubbleParent.transform.GetChild(0).gameObject);
-        lifeBubbles.Add(bubbleParent.transform.GetChild(1).gameObject);
-        lifeBubbles.Add(bubbleParent.transform.GetChild(2).gameObject);
+        for(int i = 0;i < bubbleParent.transform.childCount;i++)
+        {
+            lifeBubbles.Add(bubbleParent.transform.GetChild(i).gameObject);
+        }
+        
+        
     }
 }

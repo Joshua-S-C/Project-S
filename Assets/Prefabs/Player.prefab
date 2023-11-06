@@ -157,7 +157,7 @@ MonoBehaviour:
   maxSpeed: 15
   groundDeccelerationSpeed: 30
   airDeccelerationSpeed: 10
-  lives: 3
+  lives: 5
   bounds: {x: 40, y: 25}
 --- !u!114 &4116935250788770867
 MonoBehaviour:
