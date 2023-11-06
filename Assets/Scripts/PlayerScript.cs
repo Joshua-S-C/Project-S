@@ -287,9 +287,16 @@ public class PlayerScript : MonoBehaviour
     }
     public void ShootPressed(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(context.performed && weaponOrigin != null)
         {
-            transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+            weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+        }
+    }
+    public void SwitchWeaponPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed && weaponOrigin != null)
+        {
+            weaponOrigin.GetComponent<WeaponOriginScript>().SwitchWeapon();
         }
     }
     private void CheckShootPressedKeyboard()
@@ -297,9 +304,9 @@ public class PlayerScript : MonoBehaviour
         
         if (GetComponent<PlayerInput>().devices[0].description.deviceClass == "Keyboard")
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && weaponOrigin != null)
             {
-                transform.Find("WeaponOrigin").GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+                weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
             }
         }
         
