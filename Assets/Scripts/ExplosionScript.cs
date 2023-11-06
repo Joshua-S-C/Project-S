@@ -21,12 +21,13 @@ public class ExplosionScript : MonoBehaviour
     }
     public void Explode()
     {
+
         for(int i = 0; i < explodeableObjects.Count; i++)
         {
 
             Vector2 distance = explodeableObjects[i].transform.position - transform.position;
-            distance = new Vector2(distance.x, distance.y / yDivideAmount);
             Vector2 direction = distance.normalized;
+            direction = new Vector2(direction.x, direction.y / yDivideAmount);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0, explodeableObjects[i].GetComponent<Rigidbody2D>().velocity.y);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity += direction * knockback;
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(playerMovementDisabledDuration);

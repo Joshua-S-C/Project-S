@@ -77,9 +77,13 @@ public class DashScript : MonoBehaviour
     }
     public void StopDash()
     {
-        isDashing = false;
-        dashCooldownTimer = dashCooldown;
-        GetComponent<PlayerScript>().EnableMovement();
+        if(isDashing)
+        {
+            isDashing = false;
+            dashCooldownTimer = dashCooldown;
+            GetComponent<PlayerScript>().EnableMovement();
+        }
+        
     }
 
     public bool GetIsDashing()
