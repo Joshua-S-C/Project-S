@@ -7,6 +7,7 @@ public class ScoreCardScript : MonoBehaviour
     private List<GameObject> lifeBubbles;
     private GameObject deathMask;
     private GameObject DashCooldownDisplay;
+    private GameObject ammoDisplay;
     private bool playerAlive = true;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class ScoreCardScript : MonoBehaviour
         GetLifeBubbles();
         deathMask = transform.Find("DeathMask").gameObject;
         DashCooldownDisplay = transform.Find("PlayerDashCooldown").gameObject;
+        ammoDisplay = transform.Find("AmmoDisplay").gameObject;
     }
     // Update is called once per frame
     void Update()
@@ -35,9 +37,17 @@ public class ScoreCardScript : MonoBehaviour
         }
         
     }
+    public void UpdateScoreCardAmmoDisplay(int ammo,int maxAmmo,float ratio)
+    {
+        ammoDisplay.GetComponent<AmmoDisplayScript>().UpdateDisplay(ammo,maxAmmo, ratio);
+    }
     public void UpdateScoreCardCooldowns(float dashDisplayRatio)
     {
         DashCooldownDisplay.GetComponent<DashCooldownDisplayScript>().UpdateDisplay(dashDisplayRatio);
+    }
+    public void UpdateAmmoDisplay(int ammo,int maxAmmo,float ratio)
+    {
+
     }
     public bool GetIsAlive()
     {
