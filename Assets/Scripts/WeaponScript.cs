@@ -12,6 +12,12 @@ public class WeaponScript : MonoBehaviour
     private bool isFireDelayTimer;
     private float fireDelayTimer;
 
+    public float bulletCount;
+    public bool burst;
+    public float burstShotDelay;
+    public bool spread;
+    public float spreadArc;
+
     public float reloadTime;
     private float reloadTimer;
     private bool isReloading;
@@ -114,11 +120,34 @@ public class WeaponScript : MonoBehaviour
             float ratio = currentAmmo / maxAmmo;
             GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);
             StartFireDelayTimer();
-            GameObject firedObject = Instantiate(ammo,GameObject.Find("ShotThings").transform);
-            firedObject.transform.position = transform.position;
-            firedObject.transform.rotation = transform.rotation;
-            firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
-            firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+
+            if (burst)
+            {
+
+            }
+            else if(spread)
+            {
+                for(int i = 1;i < bulletCount + 1;i++)
+                {
+                    GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
+                    firedObject.transform.position = transform.position;
+                    firedObject.transform.rotation = transform.rotation;
+                    float angle = ((spreadArc / bulletCount) * i) - (spreadArc / 2) - ((spreadArc / bulletCount) / 2);
+                    firedObject.transform.Rotate(0, 0,angle);
+                    firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
+                    firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+                }
+                
+            }
+            else
+            {
+                GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
+                firedObject.transform.position = transform.position;
+                firedObject.transform.rotation = transform.rotation;
+                firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
+                firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+            }
+            
 
         }
     }

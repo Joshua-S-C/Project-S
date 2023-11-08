@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         platformList = GameObject.Find("OneWayPlatforms");
         respawnPosition = new Vector2(0,10);
         RB = GetComponent<Rigidbody2D>();

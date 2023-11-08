@@ -1170,6 +1170,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3944361645995417438, guid: 868ebd8b8e2907e46a1681ee3b72f056, type: 3}
+      propertyPath: primaryWeaponPrefab
+      value: 
+      objectReference: {fileID: 8379116100660153057, guid: 4d76e6c4f4959ae40b15ba1a2e98c23f, type: 3}
     - target: {fileID: 4116935250788770867, guid: 868ebd8b8e2907e46a1681ee3b72f056, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4715836247034814275}
   - component: {fileID: 2251027542588105277}
   - component: {fileID: 5626763398774134841}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExplosionHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8219361352813177946}
   - component: {fileID: 8450112804008695120}
   - component: {fileID: 6975110788014587953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PistolAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

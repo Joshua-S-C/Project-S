@@ -13,7 +13,7 @@ public class AmmoScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Physics.IgnoreLayerCollision(7, 7);
         hitableObjects = new List<GameObject>();
     }
 
@@ -62,6 +62,7 @@ public class AmmoScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject);
         if(collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Player")
         {
             HitObject(collision.gameObject);
