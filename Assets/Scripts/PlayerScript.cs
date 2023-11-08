@@ -22,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     public float maxSpeed;
     public float groundDeccelerationSpeed;
     public float airDeccelerationSpeed;
+
+    private bool usingWeaponPressed;
+    private bool usingWeaponPressedDown;
     
     public int lives;
     private Vector2 respawnPosition;
@@ -54,17 +57,27 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         IgnoreOneWayPlatformsTimerTick();
-        CheckShootPressedKeyboard();
+        CheckUseWeaponPressedKeyboard();
         CalculateAimDirection();
         MovementDisabledTimerTick();
         CheckOffScreen();
-        
+
+        UseWeapon();
     }
 
     private void FixedUpdate()
     {
         Movement();
     }
+    private void UseWeapon()
+    {
+        if(usingWeaponPressed)
+        {
+            
+            weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject,usingWeaponPressedDown);
+            usingWeaponPressedDown = false;
+        }
+    }    
     private void Respawn()
     {
         
@@ -320,11 +333,16 @@ public class PlayerScript : MonoBehaviour
             myDashScript.Dash(MovementInput);
         }
     }
-    public void ShootPressed(InputAction.CallbackContext context)
+    public void UseWeaponPressed(InputAction.CallbackContext context)
     {
         if(context.performed && weaponOrigin != null)
         {
-            weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject);
+            usingWeaponPressedDown = true;
+            usingWeaponPressed = true;
+        }
+        else if(context.canceled && weaponOrigin != null)
+        {
+            usingWeaponPressed = false;
         }
     }
     public void SwitchWeaponPressed(InputAction.CallbackContext context)
@@ -334,14 +352,22 @@ public class PlayerScript : MonoBehaviour
             weaponOrigin.GetComponent<WeaponOriginScript>().SwitchWeapon();
         }
     }
-    private void CheckShootPressedKeyboard()
+    private void CheckUseWeaponPressedKeyboard()
     {
         
         if (GetComponent<PlayerInput>().devices[0].description.deviceClass == "Keyboard")
         {
-            if(Input.GetMouseButtonDown(0) && weaponOrigin != null)
+            if (Input.GetMouseButtonDown(0) && weaponOrigin != null)
             {
-                weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject);
+                usingWeaponPressedDown = true;
+            }
+            if (Input.GetMouseButton(0) && weaponOrigin != null)
+            {
+                usingWeaponPressed = true;
+            }
+            else
+            {
+                usingWeaponPressed = false;
             }
         }
         

@@ -17,6 +17,7 @@ public class WeaponScript : MonoBehaviour
     public float burstShotDelay;
     public bool spread;
     public float spreadArc;
+    public bool auto;
 
     public float reloadTime;
     private float reloadTimer;
@@ -108,13 +109,25 @@ public class WeaponScript : MonoBehaviour
         }
         return true;
     }
-    public void Use(GameObject player)
+    private bool CheckAutoShoot(bool pressedDown)
     {
-        Shoot(player);
+        if(!pressedDown)
+        {
+            if(auto)
+            {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
-    private void Shoot(GameObject player)
+    public void Use(GameObject player,bool pressedDown)
     {
-        if(CheckCanShoot())
+        Shoot(player,pressedDown);
+    }
+    private void Shoot(GameObject player,bool pressedDown)
+    {
+        if(CheckCanShoot() && CheckAutoShoot(pressedDown))
         {
             currentAmmo--;
             if(currentAmmo <= 0)

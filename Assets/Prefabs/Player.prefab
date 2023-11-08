@@ -236,7 +236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5781517767513172558}
         m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: ShootPressed
+        m_MethodName: UseWeaponPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

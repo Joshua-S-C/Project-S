@@ -1173,7 +1173,7 @@ PrefabInstance:
     - target: {fileID: 3944361645995417438, guid: 868ebd8b8e2907e46a1681ee3b72f056, type: 3}
       propertyPath: primaryWeaponPrefab
       value: 
-      objectReference: {fileID: 1180721712439824952, guid: 7d3a8a171aa023d4f85bacd341600bc2, type: 3}
+      objectReference: {fileID: 7027876260666116260, guid: fd7a6e61a0a383d4587a7404c4e75256, type: 3}
     - target: {fileID: 4116935250788770867, guid: 868ebd8b8e2907e46a1681ee3b72f056, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
