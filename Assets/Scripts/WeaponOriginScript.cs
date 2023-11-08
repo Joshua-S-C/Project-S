@@ -25,9 +25,9 @@ public class WeaponOriginScript : MonoBehaviour
     {
         currentWeaponName = "Primary";
         primaryWeapon = Instantiate(primaryWeaponPrefab,transform);
-        primaryWeapon.SetActive(true);
+        primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
         secondaryWeapon = Instantiate(secondaryWeaponPrefab,transform);
-        secondaryWeapon.SetActive(false);
+        secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
         currentWeapon = primaryWeapon;
     }
     public void ShootWeapon(GameObject player)
@@ -39,15 +39,15 @@ public class WeaponOriginScript : MonoBehaviour
     {
         if(currentWeaponName == "Primary")
         {
-            secondaryWeapon.SetActive(true);
-            primaryWeapon.SetActive(false);
+            secondaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+            primaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
             currentWeapon = secondaryWeapon;
             currentWeaponName = "Secondary";
         }
         else if (currentWeaponName == "Secondary")
         {
-            primaryWeapon.SetActive(true);
-            secondaryWeapon.SetActive(false);
+            primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+            secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
             currentWeapon = primaryWeapon;
             currentWeaponName = "Primary";
         }

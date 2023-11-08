@@ -16,16 +16,11 @@ public class WeaponScript : MonoBehaviour
     private float reloadTimer;
     private bool isReloading;
 
-    private GameObject player;
+    private bool isCurrenWeapon;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        player = transform.root.gameObject;
         currentAmmo = maxAmmo;
-    }
-    private void OnEnable()
-    {
-        
     }
 
     // Update is called once per frame
@@ -50,24 +45,58 @@ public class WeaponScript : MonoBehaviour
             }
         }
     }
+    public void SwitchToWeapon()
+    {
+        isCurrenWeapon = true;
+        GameObject player = transform.root.gameObject;
+        GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, GetCurrentRatio());
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+    public void SwitchOffWeapon()
+    {
+        isCurrenWeapon = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        
+    }
+    private float GetCurrentRatio()
+    {
+        float ratio = 0;
+        if (isReloading)
+        {
+            ratio = reloadTimer / reloadTime;
+        }
+        else
+        {
+            ratio = currentAmmo / maxAmmo;
+        }
+        return ratio;
+    }
     private void ReloadTimerTick()
     {
         if(isReloading)
         {
-
-            reloadTimer -= Time.deltaTime;
-            float ratio = reloadTimer / reloadTime;
-            GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);
-            if (reloadTimer <= 0)
+            GameObject player = transform.root.gameObject;
+            reloadTimer += Time.deltaTime;
+            if (reloadTimer >= reloadTime)
             {
                 isReloading = false;
                 currentAmmo = maxAmmo;
             }
+            if(isCurrenWeapon)
+            {
+                GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, GetCurrentRatio());
+            }
+            
         }
+    }
+    private void StartReloading()
+    {
+        reloadTimer = 0;
+        isReloading = true;
     }
     private bool CheckCanShoot()
     {
-        if(isFireDelayTimer && !isReloading)
+        if(isFireDelayTimer || isReloading)
         {
             return false;
         }
@@ -80,7 +109,7 @@ public class WeaponScript : MonoBehaviour
             currentAmmo--;
             if(currentAmmo <= 0)
             {
-                isReloading = true;
+                StartReloading();
             }
             float ratio = currentAmmo / maxAmmo;
             GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);

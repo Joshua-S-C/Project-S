@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class AmmoDisplayScript : MonoBehaviour
 {
-    public GameObject ammoText;
-    public GameObject ammoBar;
+    private GameObject ammoText;
+    private GameObject ammoBar;
     private float ammoBarMax;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        ammoText = transform.Find("AmmoText").gameObject;
+        ammoBar = transform.Find("Mask").gameObject;
         ammoBarMax = ammoBar.GetComponent<RectTransform>().sizeDelta.x;
+        
     }
 
     // Update is called once per frame

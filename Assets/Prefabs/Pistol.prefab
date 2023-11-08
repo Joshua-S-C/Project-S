@@ -98,5 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: {fileID: 1962007472775313099, guid: e24e1bea5a0ee1a43bdc5b66fb551f64, type: 3}
+  maxAmmo: 20
   fireDelay: 0.2
   fireVelocity: 40
+  reloadTime: 1

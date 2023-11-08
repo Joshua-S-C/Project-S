@@ -5,9 +5,9 @@ using UnityEngine;
 public class ScoreCardScript : MonoBehaviour
 {
     private List<GameObject> lifeBubbles;
-    private GameObject deathMask;
-    private GameObject DashCooldownDisplay;
-    private GameObject ammoDisplay;
+    public GameObject deathMask;
+    public GameObject DashCooldownDisplay;
+    public GameObject ammoDisplay;
     private bool playerAlive = true;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,6 @@ public class ScoreCardScript : MonoBehaviour
         GetLifeBubbles();
         deathMask = transform.Find("DeathMask").gameObject;
         DashCooldownDisplay = transform.Find("PlayerDashCooldown").gameObject;
-        ammoDisplay = transform.Find("AmmoDisplay").gameObject;
     }
     // Update is called once per frame
     void Update()
