@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodable: 0
-  knockback: 2
+  knockback: 14
 --- !u!50 &350844435725396579
 Rigidbody2D:
   serializedVersion: 4

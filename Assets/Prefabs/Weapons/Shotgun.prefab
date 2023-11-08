@@ -106,4 +106,5 @@ MonoBehaviour:
   burstShotDelay: 0
   spread: 1
   spreadArc: 30
-  reloadTime: 1
+  auto: 0
+  reloadTime: 2.5
