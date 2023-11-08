@@ -30,10 +30,10 @@ public class WeaponOriginScript : MonoBehaviour
         secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
         currentWeapon = primaryWeapon;
     }
-    public void ShootWeapon(GameObject player)
+    public void UseWeapon(GameObject player)
     {
         //player is passed to prevent the bullet from hitting the player that fired it
-        currentWeapon.GetComponent<WeaponScript>().Shoot(player);
+        currentWeapon.GetComponent<WeaponScript>().Use(player);
     }    
     public void SwitchWeapon()
     {

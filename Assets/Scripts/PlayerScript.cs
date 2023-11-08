@@ -324,7 +324,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(context.performed && weaponOrigin != null)
         {
-            weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+            weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject);
         }
     }
     public void SwitchWeaponPressed(InputAction.CallbackContext context)
@@ -341,7 +341,7 @@ public class PlayerScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0) && weaponOrigin != null)
             {
-                weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+                weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject);
             }
         }
         

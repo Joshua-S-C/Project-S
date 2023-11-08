@@ -108,7 +108,11 @@ public class WeaponScript : MonoBehaviour
         }
         return true;
     }
-    public void Shoot(GameObject player)
+    public void Use(GameObject player)
+    {
+        Shoot(player);
+    }
+    private void Shoot(GameObject player)
     {
         if(CheckCanShoot())
         {
