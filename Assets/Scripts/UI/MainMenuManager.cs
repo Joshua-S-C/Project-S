@@ -20,4 +20,9 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(MainMenu);
     }
+    public string CharacterSelectMenu = "Character Select";
+    public void OpenCharacterSelect()
+    {
+        SceneManager.LoadScene(CharacterSelectMenu);
+    }
 }

@@ -155,6 +155,7 @@ MonoBehaviour:
   LevelName: Stage
   SettingsMenu: Settings Menu
   MainMenu: Main Menu
+  CharacterSelectMenu: Character Select
 --- !u!4 &329882560
 Transform:
   m_ObjectHideFlags: 0
@@ -427,7 +428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 329882559}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: OpenStage
+        m_MethodName: OpenCharacterSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
