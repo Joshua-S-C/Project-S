@@ -374,5 +374,9 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-
+    // Accessors
+    public Vector2 GetAimDirection()
+    {
+        return aimDirection;
+    }
 }
