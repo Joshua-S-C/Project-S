@@ -80,7 +80,7 @@ public class ScoreboardManagerScript : MonoBehaviour
                 if(playersAlive == 1)
                 {
                     GameObject alivePlayer = GetFirstAlivePlayer();
-                    EndScreenScript.EndScreen(Instantiate(alivePlayer),alivePlayer.GetComponent<PlayerInput>().playerIndex);
+                    EndScreenScript.EndScreen(alivePlayer.GetComponent<PlayerInput>().playerIndex);
                 }
             }
         }

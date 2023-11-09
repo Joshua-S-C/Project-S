@@ -37,8 +37,10 @@ public class PlayerScript : MonoBehaviour
 
     private GameObject platformList;
     private bool isIgnorePlatforms;
-    private float ignorePlatformsDuration = 0.5f;
+    private bool isIgnorePlatformsTimer;
+    private float ignorePlatformsDuration = 0.1f;
     private float ignorePlatformsTimer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +66,6 @@ public class PlayerScript : MonoBehaviour
 
         UseWeapon();
     }
-
     private void FixedUpdate()
     {
         Movement();
@@ -282,6 +283,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void IgnoreOneWayPlatforms(bool ignore)
     {
+        isIgnorePlatforms = ignore;
         for (int i = 0;i < platformList.transform.childCount;i++)
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), platformList.transform.GetChild(i).GetComponent<Collider2D>(),ignore);
@@ -289,16 +291,26 @@ public class PlayerScript : MonoBehaviour
     }
     private void IgnoreOneWayPlatformsTimerTick()
     {
-        if(isIgnorePlatforms)
+        if(isIgnorePlatformsTimer)
         {
             ignorePlatformsTimer -= Time.deltaTime;
             if(ignorePlatformsTimer <= 0)
             {
+                isIgnorePlatformsTimer = false;
                 isIgnorePlatforms = false;
                 IgnoreOneWayPlatforms(false);
             }
         }
-    }    
+    }  
+    private void StartIgnoreOneWayPlatformsTimer()
+    {
+        if(isIgnorePlatforms)
+        {
+            isIgnorePlatformsTimer = true;
+            ignorePlatformsTimer = ignorePlatformsDuration;
+        }
+        
+    }
 
 
 
@@ -308,9 +320,12 @@ public class PlayerScript : MonoBehaviour
         MovementInput = context.ReadValue<Vector2>();
         if(MovementInput.y < -0.9)
         {
-            isIgnorePlatforms = true;
-            ignorePlatformsTimer = ignorePlatformsDuration;
             IgnoreOneWayPlatforms(true);
+            
+        }
+        else
+        {
+            StartIgnoreOneWayPlatformsTimer();
         }
         
         

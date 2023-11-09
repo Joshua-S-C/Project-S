@@ -5,9 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public string GameSceneName = "Stage";
-    public void OpenScene()
+    public string LevelName = "Stage";
+    public void OpenStage()
     {
-        SceneManager.LoadScene(GameSceneName);
+        SceneManager.LoadScene(LevelName);
+    }
+    public string SettingsMenu = "Settings Menu";
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene(SettingsMenu);
+    }
+    public string MainMenu = "Main Menu";
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene(MainMenu);
+    }
+    public string CharacterSelectMenu = "Character Select";
+    public void OpenCharacterSelect()
+    {
+        SceneManager.LoadScene(CharacterSelectMenu);
     }
 }

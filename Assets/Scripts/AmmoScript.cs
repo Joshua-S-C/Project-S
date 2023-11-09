@@ -8,7 +8,7 @@ public class AmmoScript : MonoBehaviour
     private float selfPlayerHitDelay = 0.1f;
     private GameObject selfPlayer;
     public bool explodable;
-    public float knockback;
+    private float knockback;
     private List<GameObject> hitableObjects;
     // Start is called before the first frame update
     void Start()
@@ -56,9 +56,19 @@ public class AmmoScript : MonoBehaviour
         if(newObject.tag == "Player")
         {
             newObject.GetComponent<PlayerScript>().PlayerHit();
+            newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
             newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * knockback;
         }
         Destroy(gameObject);
+    }
+    public void SetKnockback(float newKnockback,float explosionKnockback)
+    {
+        if (explodable)
+        {
+            transform.Find("ExplosionHitbox").GetComponent<ExplosionScript>().SetExplosionKnockback(explosionKnockback);
+        }
+        
+        knockback = newKnockback;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
