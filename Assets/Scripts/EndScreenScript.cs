@@ -40,10 +40,9 @@ public class EndScreenScript : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
     }
-    public static void EndScreen(GameObject winner,int index)
+    public static void EndScreen(int index)
     {
         winnerPlayerIndex = index;
-        winnerPlayerPrefab = winner;
         SceneManager.LoadScene("EndScreen");
     }
 }

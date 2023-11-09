@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour
 
     private GameObject platformList;
     private bool isIgnorePlatforms;
+    private bool isIgnorePlatformsTimer;
     private float ignorePlatformsDuration = 0.5f;
     private float ignorePlatformsTimer;
 
@@ -282,6 +283,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void IgnoreOneWayPlatforms(bool ignore)
     {
+        isIgnorePlatforms = ignore;
         for (int i = 0;i < platformList.transform.childCount;i++)
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), platformList.transform.GetChild(i).GetComponent<Collider2D>(),ignore);
@@ -289,7 +291,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void IgnoreOneWayPlatformsTimerTick()
     {
-        if(isIgnorePlatforms)
+        if(isIgnorePlatformsTimer)
         {
             ignorePlatformsTimer -= Time.deltaTime;
             if(ignorePlatformsTimer <= 0)
@@ -298,7 +300,16 @@ public class PlayerScript : MonoBehaviour
                 IgnoreOneWayPlatforms(false);
             }
         }
-    }    
+    }  
+    private void StartIgnoreOneWayPlatformsTimer()
+    {
+        if(isIgnorePlatforms)
+        {
+            isIgnorePlatformsTimer = true;
+            ignorePlatformsTimer = ignorePlatformsDuration;
+        }
+        
+    }
 
 
 
@@ -308,9 +319,12 @@ public class PlayerScript : MonoBehaviour
         MovementInput = context.ReadValue<Vector2>();
         if(MovementInput.y < -0.9)
         {
-            isIgnorePlatforms = true;
-            ignorePlatformsTimer = ignorePlatformsDuration;
             IgnoreOneWayPlatforms(true);
+            
+        }
+        else
+        {
+            StartIgnoreOneWayPlatformsTimer();
         }
         
         
