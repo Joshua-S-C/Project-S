@@ -12,6 +12,7 @@ public class WeaponScript : MonoBehaviour
     private bool isFireDelayTimer;
     private float fireDelayTimer;
     public float knockback;
+    public float explosionKnockback;
 
     public float bulletCount;
     public bool burst;
@@ -152,7 +153,7 @@ public class WeaponScript : MonoBehaviour
                 for(int i = 1;i < bulletCount + 1;i++)
                 {
                     GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
-                    firedObject.GetComponent<AmmoScript>().SetKnockback(knockback);
+                    firedObject.GetComponent<AmmoScript>().SetKnockback(knockback,explosionKnockback);
                     firedObject.transform.position = transform.position;
                     firedObject.transform.rotation = transform.rotation;
                     float angle = ((spreadArc / bulletCount) * i) - (spreadArc / 2) - ((spreadArc / bulletCount) / 2);
@@ -165,7 +166,7 @@ public class WeaponScript : MonoBehaviour
             else
             {
                 GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
-                firedObject.GetComponent<AmmoScript>().SetKnockback(knockback);
+                firedObject.GetComponent<AmmoScript>().SetKnockback(knockback, explosionKnockback);
                 firedObject.transform.position = transform.position;
                 firedObject.transform.rotation = transform.rotation;
                 firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;

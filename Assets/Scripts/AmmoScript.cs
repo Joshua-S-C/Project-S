@@ -60,8 +60,13 @@ public class AmmoScript : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    public void SetKnockback(float newKnockback)
+    public void SetKnockback(float newKnockback,float explosionKnockback)
     {
+        if (explodable)
+        {
+            transform.Find("ExplosionHitbox").GetComponent<ExplosionScript>().SetExplosionKnockback(explosionKnockback);
+        }
+        
         knockback = newKnockback;
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExplosionScript : MonoBehaviour
 {
     private List<GameObject> explodeableObjects;
-    public float knockback;
+    private float knockback;
     public float yDivideAmount;
     public float playerMovementDisabledDuration;
     // Start is called before the first frame update
@@ -33,6 +33,10 @@ public class ExplosionScript : MonoBehaviour
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(playerMovementDisabledDuration);
             
         }
+    }
+    public void SetExplosionKnockback(float newKnockback)
+    {
+        knockback = newKnockback;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
