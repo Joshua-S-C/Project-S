@@ -99,9 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: {fileID: 3028214117593328843, guid: f53a82ef9ecc1ee4888d2be5789e2ce4, type: 3}
   maxAmmo: 2
-  fireDelay: 0.6
+  fireDelay: 1
   fireVelocity: 30
-  knockback: 14
+  knockback: 8
   bulletCount: 5
   burst: 0
   burstShotDelay: 0

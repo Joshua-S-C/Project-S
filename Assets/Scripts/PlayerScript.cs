@@ -38,8 +38,9 @@ public class PlayerScript : MonoBehaviour
     private GameObject platformList;
     private bool isIgnorePlatforms;
     private bool isIgnorePlatformsTimer;
-    private float ignorePlatformsDuration = 0.5f;
+    private float ignorePlatformsDuration = 0.1f;
     private float ignorePlatformsTimer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +66,6 @@ public class PlayerScript : MonoBehaviour
 
         UseWeapon();
     }
-
     private void FixedUpdate()
     {
         Movement();
@@ -296,6 +296,7 @@ public class PlayerScript : MonoBehaviour
             ignorePlatformsTimer -= Time.deltaTime;
             if(ignorePlatformsTimer <= 0)
             {
+                isIgnorePlatformsTimer = false;
                 isIgnorePlatforms = false;
                 IgnoreOneWayPlatforms(false);
             }

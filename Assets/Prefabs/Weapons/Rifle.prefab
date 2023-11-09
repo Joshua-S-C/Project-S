@@ -100,8 +100,8 @@ MonoBehaviour:
   ammo: {fileID: 5851104796520598430, guid: 35dddb9887436344497573dc8c2ea910, type: 3}
   maxAmmo: 10
   fireDelay: 0.3
-  fireVelocity: 60
-  knockback: 4
+  fireVelocity: 70
+  knockback: 40
   bulletCount: 1
   burst: 0
   burstShotDelay: 0
