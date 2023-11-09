@@ -102,7 +102,7 @@ MonoBehaviour:
   fireDelay: 0.4
   fireVelocity: 30
   knockback: 10
-  explosionKnockback: 30
+  explosionKnockback: 40
   bulletCount: 1
   burst: 0
   burstShotDelay: 0

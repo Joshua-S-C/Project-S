@@ -101,7 +101,8 @@ MonoBehaviour:
   maxAmmo: 2
   fireDelay: 1
   fireVelocity: 30
-  knockback: 8
+  knockback: 12
+  explosionKnockback: 0
   bulletCount: 5
   burst: 0
   burstShotDelay: 0
