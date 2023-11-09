@@ -30,6 +30,5 @@ public class DashCooldownDisplayScript : MonoBehaviour
         
         RectTransform myTransform = cooldownMask.GetComponent<RectTransform>();
         myTransform.sizeDelta = new Vector2(myTransform.sizeDelta.x, originalHeight * ratio);
-        Debug.Log(originalHeight * ratio);
     }
 }

@@ -106,6 +106,11 @@ public class ScoreboardManagerScript : MonoBehaviour
         }
         return null;
     }
+    public void UpdateScoreCardAmmoDisplay(GameObject player, int ammo, int maxAmmo, float ratio)
+    {
+        ScoreCard card = GetScoreCard(player);
+        card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardAmmoDisplay(ammo,maxAmmo,ratio);
+    }
 }
 
 

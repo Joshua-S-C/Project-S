@@ -157,7 +157,7 @@ MonoBehaviour:
   maxSpeed: 15
   groundDeccelerationSpeed: 30
   airDeccelerationSpeed: 10
-  lives: 3
+  lives: 5
   bounds: {x: 40, y: 25}
 --- !u!114 &4116935250788770867
 MonoBehaviour:
@@ -236,7 +236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5781517767513172558}
         m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
-        m_MethodName: ShootPressed
+        m_MethodName: UseWeaponPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -25,29 +25,29 @@ public class WeaponOriginScript : MonoBehaviour
     {
         currentWeaponName = "Primary";
         primaryWeapon = Instantiate(primaryWeaponPrefab,transform);
-        primaryWeapon.SetActive(true);
+        primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
         secondaryWeapon = Instantiate(secondaryWeaponPrefab,transform);
-        secondaryWeapon.SetActive(false);
+        secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
         currentWeapon = primaryWeapon;
     }
-    public void ShootWeapon(GameObject player)
+    public void UseWeapon(GameObject player,bool pressedDown)
     {
         //player is passed to prevent the bullet from hitting the player that fired it
-        currentWeapon.GetComponent<WeaponScript>().Shoot(player);
+        currentWeapon.GetComponent<WeaponScript>().Use(player,pressedDown);
     }    
     public void SwitchWeapon()
     {
         if(currentWeaponName == "Primary")
         {
-            secondaryWeapon.SetActive(true);
-            primaryWeapon.SetActive(false);
+            secondaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+            primaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
             currentWeapon = secondaryWeapon;
             currentWeaponName = "Secondary";
         }
         else if (currentWeaponName == "Secondary")
         {
-            primaryWeapon.SetActive(true);
-            secondaryWeapon.SetActive(false);
+            primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+            secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
             currentWeapon = primaryWeapon;
             currentWeaponName = "Primary";
         }

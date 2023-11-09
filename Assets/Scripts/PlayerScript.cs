@@ -22,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     public float maxSpeed;
     public float groundDeccelerationSpeed;
     public float airDeccelerationSpeed;
+
+    private bool usingWeaponPressed;
+    private bool usingWeaponPressedDown;
     
     public int lives;
     private Vector2 respawnPosition;
@@ -32,9 +35,16 @@ public class PlayerScript : MonoBehaviour
 
     public Vector2 bounds;
 
+    private GameObject platformList;
+    private bool isIgnorePlatforms;
+    private float ignorePlatformsDuration = 0.5f;
+    private float ignorePlatformsTimer;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        platformList = GameObject.Find("OneWayPlatforms");
         respawnPosition = new Vector2(0,10);
         RB = GetComponent<Rigidbody2D>();
         weaponOrigin = transform.Find("WeaponOrigin").gameObject;
@@ -46,17 +56,28 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckShootPressedKeyboard();
+        IgnoreOneWayPlatformsTimerTick();
+        CheckUseWeaponPressedKeyboard();
         CalculateAimDirection();
         MovementDisabledTimerTick();
         CheckOffScreen();
-        
+
+        UseWeapon();
     }
 
     private void FixedUpdate()
     {
         Movement();
     }
+    private void UseWeapon()
+    {
+        if(usingWeaponPressed)
+        {
+            
+            weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject,usingWeaponPressedDown);
+            usingWeaponPressedDown = false;
+        }
+    }    
     private void Respawn()
     {
         
@@ -259,6 +280,25 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
+    private void IgnoreOneWayPlatforms(bool ignore)
+    {
+        for (int i = 0;i < platformList.transform.childCount;i++)
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), platformList.transform.GetChild(i).GetComponent<Collider2D>(),ignore);
+        }
+    }
+    private void IgnoreOneWayPlatformsTimerTick()
+    {
+        if(isIgnorePlatforms)
+        {
+            ignorePlatformsTimer -= Time.deltaTime;
+            if(ignorePlatformsTimer <= 0)
+            {
+                isIgnorePlatforms = false;
+                IgnoreOneWayPlatforms(false);
+            }
+        }
+    }    
 
 
 
@@ -266,6 +306,14 @@ public class PlayerScript : MonoBehaviour
     public void MovePressed(InputAction.CallbackContext context)
     {
         MovementInput = context.ReadValue<Vector2>();
+        if(MovementInput.y < -0.9)
+        {
+            isIgnorePlatforms = true;
+            ignorePlatformsTimer = ignorePlatformsDuration;
+            IgnoreOneWayPlatforms(true);
+        }
+        
+        
     }
     public void JumpPressed(InputAction.CallbackContext context)
     {
@@ -285,11 +333,16 @@ public class PlayerScript : MonoBehaviour
             myDashScript.Dash(MovementInput);
         }
     }
-    public void ShootPressed(InputAction.CallbackContext context)
+    public void UseWeaponPressed(InputAction.CallbackContext context)
     {
         if(context.performed && weaponOrigin != null)
         {
-            weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+            usingWeaponPressedDown = true;
+            usingWeaponPressed = true;
+        }
+        else if(context.canceled && weaponOrigin != null)
+        {
+            usingWeaponPressed = false;
         }
     }
     public void SwitchWeaponPressed(InputAction.CallbackContext context)
@@ -299,14 +352,22 @@ public class PlayerScript : MonoBehaviour
             weaponOrigin.GetComponent<WeaponOriginScript>().SwitchWeapon();
         }
     }
-    private void CheckShootPressedKeyboard()
+    private void CheckUseWeaponPressedKeyboard()
     {
         
         if (GetComponent<PlayerInput>().devices[0].description.deviceClass == "Keyboard")
         {
-            if(Input.GetMouseButtonDown(0) && weaponOrigin != null)
+            if (Input.GetMouseButtonDown(0) && weaponOrigin != null)
             {
-                weaponOrigin.GetComponent<WeaponOriginScript>().ShootWeapon(gameObject);
+                usingWeaponPressedDown = true;
+            }
+            if (Input.GetMouseButton(0) && weaponOrigin != null)
+            {
+                usingWeaponPressed = true;
+            }
+            else
+            {
+                usingWeaponPressed = false;
             }
         }
         

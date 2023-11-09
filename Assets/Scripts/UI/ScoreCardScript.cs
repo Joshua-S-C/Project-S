@@ -5,8 +5,9 @@ using UnityEngine;
 public class ScoreCardScript : MonoBehaviour
 {
     private List<GameObject> lifeBubbles;
-    private GameObject deathMask;
-    private GameObject DashCooldownDisplay;
+    public GameObject deathMask;
+    public GameObject DashCooldownDisplay;
+    public GameObject ammoDisplay;
     private bool playerAlive = true;
     // Start is called before the first frame update
     void Start()
@@ -35,9 +36,17 @@ public class ScoreCardScript : MonoBehaviour
         }
         
     }
+    public void UpdateScoreCardAmmoDisplay(int ammo,int maxAmmo,float ratio)
+    {
+        ammoDisplay.GetComponent<AmmoDisplayScript>().UpdateDisplay(ammo,maxAmmo, ratio);
+    }
     public void UpdateScoreCardCooldowns(float dashDisplayRatio)
     {
         DashCooldownDisplay.GetComponent<DashCooldownDisplayScript>().UpdateDisplay(dashDisplayRatio);
+    }
+    public void UpdateAmmoDisplay(int ammo,int maxAmmo,float ratio)
+    {
+
     }
     public bool GetIsAlive()
     {
@@ -47,8 +56,11 @@ public class ScoreCardScript : MonoBehaviour
     {
         lifeBubbles = new List<GameObject>();
         GameObject bubbleParent = transform.Find("LifeBubbles").gameObject;
-        lifeBubbles.Add(bubbleParent.transform.GetChild(0).gameObject);
-        lifeBubbles.Add(bubbleParent.transform.GetChild(1).gameObject);
-        lifeBubbles.Add(bubbleParent.transform.GetChild(2).gameObject);
+        for(int i = 0;i < bubbleParent.transform.childCount;i++)
+        {
+            lifeBubbles.Add(bubbleParent.transform.GetChild(i).gameObject);
+        }
+        
+        
     }
 }
