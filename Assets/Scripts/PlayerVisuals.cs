@@ -8,9 +8,6 @@ public class PlayerVisuals : MonoBehaviour
     private SpriteRenderer sr;
     public Animator animator;
     
-    // Temp vars to view in editor
-    public float angle = 0;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +17,7 @@ public class PlayerVisuals : MonoBehaviour
     void Update()
     {
         UpdateAnimatorParams();
-        UpdatePlayerDirection();
+        UpdatePlayerFlip();
     }
 
     /// <summary>
@@ -37,10 +34,10 @@ public class PlayerVisuals : MonoBehaviour
     /// <summary>
     /// Flips sprite based on where player is aiming
     /// </summary>
-    private void UpdatePlayerDirection()
+    private void UpdatePlayerFlip()
     {
         Vector2 aimDirection = gameObject.GetComponent<PlayerScript>().GetAimDirection();
-        angle = Mathf.Atan2(aimDirection.x, aimDirection.y);
+        float angle = Mathf.Atan2(aimDirection.x, aimDirection.y);
         sr.flipX = angle < 0;
     }
 
