@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class WeaponVisuals : MonoBehaviour
 {
-
+    public Transform attachedPlayer;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    public Animator animator;
+    //public Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        attachedPlayer = transform.root; // Can also be a GameObject and do transform.parent.parent.gameobject
     }
 
     void Update()
@@ -25,8 +26,8 @@ public class WeaponVisuals : MonoBehaviour
     /// </summary>
     private void UpdateWeaponFlip()
     {
-        Vector2 aimDirection = gameObject.GetComponent<PlayerScript>().GetAimDirection();
+        Vector2 aimDirection = attachedPlayer.GetComponent<PlayerScript>().GetAimDirection();
         float angle = Mathf.Atan2(aimDirection.x, aimDirection.y);
-        sr.flipX = angle < 0;
+        sr.flipY = angle < 0;
     }
 }

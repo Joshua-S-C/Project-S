@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1725362229340702221}
   - component: {fileID: 5031228197963174357}
   - component: {fileID: 3013910544972906101}
+  - component: {fileID: 749207782219576186}
   m_Layer: 0
   m_Name: SMG
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: e6cfaa10c3861474ea839ff4f32dd513, type: 3}
   m_Color: {r: 0.8482146, g: 0, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -110,3 +111,17 @@ MonoBehaviour:
   spreadArc: 30
   auto: 1
   reloadTime: 2
+--- !u!114 &749207782219576186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027876260666116260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9c5b4da77328d4c9d969627f6bcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  animator: {fileID: 0}
