@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 9066854632184444882}
   - component: {fileID: 4520434702925753319}
   - component: {fileID: 1768998313123742131}
+  - component: {fileID: 2942032710066624433}
+  - component: {fileID: 7142563590122074466}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -81,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -600808522, guid: 3c24a18ecb72dbc4dac30848048d7f8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -330,6 +332,41 @@ MonoBehaviour:
   dashSpeed: 35
   dashCooldown: 4
   dashEndSpeed: 20
+--- !u!114 &2942032710066624433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847649137517549569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc4763e7ccdab74ab15d19a0a559520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7142563590122074466}
+  angle: 0
+--- !u!95 &7142563590122074466
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847649137517549569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4469027ab9110e64fbd9e0dc5d5729a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3825417136894232732
 GameObject:
   m_ObjectHideFlags: 0
