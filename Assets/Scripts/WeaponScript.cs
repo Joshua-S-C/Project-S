@@ -30,9 +30,12 @@ public class WeaponScript : MonoBehaviour
     private bool isReloading;
 
     private bool isCurrenWeapon;
+
+    public string weaponType;
     // Start is called before the first frame update
     void Awake()
     {
+        
         currentAmmo = maxAmmo;
     }
 
@@ -184,7 +187,15 @@ public class WeaponScript : MonoBehaviour
     }
     public void Use(GameObject player,bool pressedDown)
     {
-        Shoot(player,pressedDown);
+        if(weaponType == "gun")
+        {
+            Shoot(player, pressedDown);
+        }
+        else if(weaponType == "sword")
+        {
+            Swing(player, pressedDown);
+        }
+        
     }
 
     private void Shoot(GameObject currentPlayer,bool pressedDown)
@@ -214,6 +225,7 @@ public class WeaponScript : MonoBehaviour
                     firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
                     firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
                 }
+                currentAmmo--;
                 StartFireDelayTimer();
             }
             else
@@ -225,7 +237,17 @@ public class WeaponScript : MonoBehaviour
             {
                 StartReloading();
             }
+            float ratio = currentAmmo / maxAmmo;
+            GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);
 
         }
+    }
+    private void Swing(GameObject player, bool pressedDown)
+    {
+        GetComponent<SwordScript>().Swing(player);
+    }
+    public float GetKnockback()
+    {
+        return knockback;
     }
 }

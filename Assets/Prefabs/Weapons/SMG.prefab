@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: {fileID: 4963844832916257789, guid: 87e9c7c73b0f88e4386969b6d5554822, type: 3}
+  animator: {fileID: 0}
   maxAmmo: 30
   fireDelay: 0.1
   fireVelocity: 40
@@ -111,6 +112,7 @@ MonoBehaviour:
   spreadArc: 30
   auto: 1
   reloadTime: 2
+  weaponType: gun
 --- !u!114 &749207782219576186
 MonoBehaviour:
   m_ObjectHideFlags: 0

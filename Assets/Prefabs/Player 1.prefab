@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1422244877
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -600808522, guid: 3c24a18ecb72dbc4dac30848048d7f8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -411,13 +411,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryWeaponPrefab: {fileID: 1180721712439824952, guid: 7d3a8a171aa023d4f85bacd341600bc2, type: 3}
-  secondaryWeaponPrefab: {fileID: 5164459458079050570, guid: e3337a7a30482f74997a90e0ab03efff, type: 3}
+  secondaryWeaponPrefab: {fileID: 2929145849798812916, guid: 85503ee7eb6267a41847cc1b39453cd5, type: 3}
   weaponList:
   - {fileID: 1180721712439824952, guid: 7d3a8a171aa023d4f85bacd341600bc2, type: 3}
   - {fileID: 7510263228155418227, guid: 336d5947c8b559445a8917e2d9acea73, type: 3}
   - {fileID: 8379116100660153057, guid: 4d76e6c4f4959ae40b15ba1a2e98c23f, type: 3}
   - {fileID: 7027876260666116260, guid: fd7a6e61a0a383d4587a7404c4e75256, type: 3}
   - {fileID: 8565670525262500506, guid: 8ff32621d998b934a87c1fd1c20d2e45, type: 3}
+  - {fileID: 2929145849798812916, guid: 85503ee7eb6267a41847cc1b39453cd5, type: 3}
+  secondaryWeaponList:
+  - {fileID: 5164459458079050570, guid: e3337a7a30482f74997a90e0ab03efff, type: 3}
+  - {fileID: 3167676954110420788, guid: 668a7cef90d4e3c47b56cdce4fbac96d, type: 3}
 --- !u!1 &4477103173711915629
 GameObject:
   m_ObjectHideFlags: 0

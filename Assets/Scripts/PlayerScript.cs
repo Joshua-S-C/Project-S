@@ -81,11 +81,9 @@ public class PlayerScript : MonoBehaviour
     }    
     private void Respawn()
     {
-        
-         transform.position = respawnPosition;
-         RB.velocity = Vector2.zero;
-        
-        
+        transform.position = respawnPosition;
+        RB.velocity = Vector2.zero;
+        myDashScript.StopDash();
     }
     private void Die()
     {

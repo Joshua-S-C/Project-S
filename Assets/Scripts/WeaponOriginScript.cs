@@ -12,6 +12,7 @@ public class WeaponOriginScript : MonoBehaviour
     private string currentWeaponName;
 
     public List<GameObject> weaponList;
+    public List<GameObject> secondaryWeaponList;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class WeaponOriginScript : MonoBehaviour
     private void GetRandomWeapons()
     {
         primaryWeaponPrefab = weaponList[Random.Range(0, weaponList.Count)];
+        secondaryWeaponPrefab = secondaryWeaponList[Random.Range(0, secondaryWeaponList.Count)];
     }
     public void UseWeapon(GameObject player,bool pressedDown)
     {

@@ -8,6 +8,7 @@ public class WeaponVisuals : MonoBehaviour
     public Transform attachedPlayer;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private bool rotated;
     //public Animator animator;
     void Start()
     {

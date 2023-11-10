@@ -111,6 +111,7 @@ MonoBehaviour:
   spreadArc: 0
   auto: 0
   reloadTime: 1
+  weaponType: gun
 --- !u!114 &5929626568791924698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9c5b4da77328d4c9d969627f6bcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
-  aimX: 0
-  aimY: 0
-  root: {fileID: 0}
-  childOfRoot: {fileID: 0}
+  attachedPlayer: {fileID: 0}
