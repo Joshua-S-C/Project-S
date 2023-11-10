@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 337959366}
   - component: {fileID: 337959370}
   - component: {fileID: 337959369}
-  - component: {fileID: 337959368}
   - component: {fileID: 337959367}
   m_Layer: 6
   m_Name: OneWayPlatform (1)
@@ -239,18 +238,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!114 &337959368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337959365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4884ded4a0ffa47b651440df0e3beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &337959369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -671,7 +658,6 @@ GameObject:
   - component: {fileID: 1372229643}
   - component: {fileID: 1372229647}
   - component: {fileID: 1372229646}
-  - component: {fileID: 1372229645}
   - component: {fileID: 1372229644}
   m_Layer: 6
   m_Name: OneWayPlatform
@@ -714,18 +700,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!114 &1372229645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372229642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4884ded4a0ffa47b651440df0e3beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1372229646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1053,7 +1027,7 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:

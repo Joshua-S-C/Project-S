@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 30
   yDivideAmount: 3
   playerMovementDisabledDuration: 0.25
 --- !u!1 &8624080617171281991
@@ -219,7 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodable: 1
-  knockback: 5
 --- !u!50 &8071225441576916035
 Rigidbody2D:
   serializedVersion: 4
@@ -245,5 +243,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0

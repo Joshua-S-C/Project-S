@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour
     private GameObject platformList;
     private bool isIgnorePlatforms;
     private bool isIgnorePlatformsTimer;
-    private float ignorePlatformsDuration = 0.1f;
+    private float ignorePlatformsDuration = 0.2f;
     private float ignorePlatformsTimer;
 
 

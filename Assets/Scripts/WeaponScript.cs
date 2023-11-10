@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     public GameObject ammo;
+    private GameObject player;
     public float maxAmmo;
     private float currentAmmo;
     public float fireDelay;
@@ -14,9 +15,12 @@ public class WeaponScript : MonoBehaviour
     public float knockback;
     public float explosionKnockback;
 
-    public float bulletCount;
+    public int bulletCount;
+    private int currentBulletCount;
     public bool burst;
     public float burstShotDelay;
+    private float burstShotTimer;
+    private bool isBurst;
     public bool spread;
     public float spreadArc;
     public bool auto;
@@ -37,6 +41,7 @@ public class WeaponScript : MonoBehaviour
     {
         ReloadTimerTick();
         FireDelayTimerTick();
+        BurstTimer();
     }
     private void StartFireDelayTimer()
     {
@@ -63,6 +68,7 @@ public class WeaponScript : MonoBehaviour
             GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, GetCurrentRatio());
         }
         GetComponent<SpriteRenderer>().enabled = true;
+        StartFireDelayTimer();
     }
     public void SwitchOffWeapon()
     {
@@ -126,27 +132,74 @@ public class WeaponScript : MonoBehaviour
         }
         return true;
     }
+    private void BurstTimer()
+    {
+        if(isBurst)
+        {
+            
+            burstShotTimer -= Time.deltaTime;
+            if(burstShotTimer <= 0)
+            {
+                
+                if (currentBulletCount <= 0)
+                {
+                    isBurst = false;
+                    StartFireDelayTimer();
+                    if (currentAmmo <= 0)
+                    {
+                        StartReloading();
+                    }
+                }
+                else
+                {
+                    ShootBullet();
+                    burstShotTimer = burstShotDelay;
+                }
+            }    
+        }
+    }
+    private void StartBurst()
+    {
+        isBurst = true;
+        currentBulletCount = bulletCount;
+        burstShotTimer = burstShotDelay;
+        ShootBullet();
+        
+    }
+    private void ShootBullet()
+    {
+        if(isBurst)
+        {
+            currentBulletCount--;
+        }
+        GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
+        firedObject.GetComponent<AmmoScript>().SetKnockback(knockback, explosionKnockback);
+        firedObject.transform.position = transform.position;
+        firedObject.transform.rotation = transform.rotation;
+        firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
+        firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+        currentAmmo--;
+        float ratio = currentAmmo / maxAmmo;
+        GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);
+    }
     public void Use(GameObject player,bool pressedDown)
     {
         Shoot(player,pressedDown);
     }
 
-    private void Shoot(GameObject player,bool pressedDown)
+    private void Shoot(GameObject currentPlayer,bool pressedDown)
     {
+        player = currentPlayer;
         if(CheckCanShoot() && CheckAutoShoot(pressedDown))
         {
-            currentAmmo--;
-            if(currentAmmo <= 0)
-            {
-                StartReloading();
-            }
-            float ratio = currentAmmo / maxAmmo;
-            GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, ratio);
-            StartFireDelayTimer();
+            
+
+            
+            
 
             if (burst)
             {
-
+                StartBurst();
             }
             else if(spread)
             {
@@ -161,18 +214,17 @@ public class WeaponScript : MonoBehaviour
                     firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
                     firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
                 }
-                
+                StartFireDelayTimer();
             }
             else
             {
-                GameObject firedObject = Instantiate(ammo, GameObject.Find("ShotThings").transform);
-                firedObject.GetComponent<AmmoScript>().SetKnockback(knockback, explosionKnockback);
-                firedObject.transform.position = transform.position;
-                firedObject.transform.rotation = transform.rotation;
-                firedObject.GetComponent<Rigidbody2D>().velocity = firedObject.transform.right * fireVelocity;
-                firedObject.GetComponent<AmmoScript>().AddSelfPlayer(player);
+                ShootBullet();
+                StartFireDelayTimer();
             }
-            
+            if (currentAmmo <= 0)
+            {
+                StartReloading();
+            }
 
         }
     }

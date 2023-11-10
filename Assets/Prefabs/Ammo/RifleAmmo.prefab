@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodable: 0
-  knockback: 4
 --- !u!50 &7527463971659165301
 Rigidbody2D:
   serializedVersion: 4
@@ -162,7 +161,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &8300789090024154060
 GameObject:
@@ -244,6 +243,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 30
   yDivideAmount: 3
   playerMovementDisabledDuration: 0.25
