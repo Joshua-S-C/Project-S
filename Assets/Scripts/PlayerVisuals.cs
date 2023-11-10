@@ -41,7 +41,7 @@ public class PlayerVisuals : MonoBehaviour
     {
         Vector2 aimDirection = gameObject.GetComponent<PlayerScript>().GetAimDirection();
         angle = Mathf.Atan2(aimDirection.x, aimDirection.y);
-        sr.flipY = angle > 180;
+        sr.flipX = angle < 0;
     }
 
 }
