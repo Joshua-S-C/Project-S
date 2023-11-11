@@ -24,7 +24,16 @@ public class AmmoDisplayScript : MonoBehaviour
     }
     public void UpdateDisplay(int ammo,int maxAmmo,float ratio)
     {
-        ammoText.GetComponent<TextMeshProUGUI>().text = ammo + "/" + maxAmmo;
-        ammoBar.GetComponent<RectTransform>().sizeDelta = new Vector2(ammoBarMax * ratio, ammoBar.GetComponent<RectTransform>().sizeDelta.y);
+        if(maxAmmo <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            ammoText.GetComponent<TextMeshProUGUI>().text = ammo + "/" + maxAmmo;
+            ammoBar.GetComponent<RectTransform>().sizeDelta = new Vector2(ammoBarMax * ratio, ammoBar.GetComponent<RectTransform>().sizeDelta.y);
+        }
+        
     }
 }

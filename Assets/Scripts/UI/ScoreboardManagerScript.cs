@@ -111,6 +111,11 @@ public class ScoreboardManagerScript : MonoBehaviour
         ScoreCard card = GetScoreCard(player);
         card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardAmmoDisplay(ammo,maxAmmo,ratio);
     }
+    public void UpdateScoreCardTacticalDisplay(GameObject player,int tacticalCount)
+    {
+        ScoreCard card = GetScoreCard(player);
+        card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardTacticalDisplay(tacticalCount);
+    }
 }
 
 

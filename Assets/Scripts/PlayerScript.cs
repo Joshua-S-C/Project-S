@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     private DashScript myDashScript;
-
     private GameObject weaponOrigin;
     private Rigidbody2D RB;
     private Vector2 movementInput;
@@ -307,6 +306,7 @@ public class PlayerScript : MonoBehaviour
             isIgnorePlatformsTimer = true;
             ignorePlatformsTimer = ignorePlatformsDuration;
         }
+       
         
     }
 
@@ -365,6 +365,7 @@ public class PlayerScript : MonoBehaviour
             weaponOrigin.GetComponent<WeaponOriginScript>().SwitchWeapon();
         }
     }
+
     private void CheckUseWeaponPressedKeyboard()
     {
         

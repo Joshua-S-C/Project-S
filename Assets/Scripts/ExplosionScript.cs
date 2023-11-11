@@ -7,7 +7,8 @@ public class ExplosionScript : MonoBehaviour
     private List<GameObject> explodeableObjects;
     private float knockback;
     public float yDivideAmount;
-    public float playerMovementDisabledDuration;
+    public float stunDuration;
+    public string explosionEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,8 @@ public class ExplosionScript : MonoBehaviour
     {
         
     }
-    public void Explode()
+
+    private void ExplodeKnockback()
     {
 
         for(int i = 0; i < explodeableObjects.Count; i++)
@@ -30,13 +32,35 @@ public class ExplosionScript : MonoBehaviour
             direction = new Vector2(direction.x, direction.y / yDivideAmount);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0, explodeableObjects[i].GetComponent<Rigidbody2D>().velocity.y);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity += direction * knockback;
-            explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(playerMovementDisabledDuration);
+            explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
             
+        }
+    }
+    private void ExplodeStun()
+    {
+        for (int i = 0; i < explodeableObjects.Count; i++)
+        {
+            explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
+        }
+    }
+    public void Explode()
+    {
+        if(explosionEffect == "knockback")
+        {
+            ExplodeKnockback();
+        }
+        else if(explosionEffect == "stun")
+        {
+
         }
     }
     public void SetExplosionKnockback(float newKnockback)
     {
         knockback = newKnockback;
+    }
+    public void SetStunDuration(float newStunDuration)
+    {
+        stunDuration = newStunDuration;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

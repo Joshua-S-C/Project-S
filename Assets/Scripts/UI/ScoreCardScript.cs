@@ -8,6 +8,7 @@ public class ScoreCardScript : MonoBehaviour
     public GameObject deathMask;
     public GameObject DashCooldownDisplay;
     public GameObject ammoDisplay;
+    public GameObject tacticalDisplay;
     private bool playerAlive = true;
     // Start is called before the first frame update
     void Start()
@@ -44,9 +45,9 @@ public class ScoreCardScript : MonoBehaviour
     {
         DashCooldownDisplay.GetComponent<DashCooldownDisplayScript>().UpdateDisplay(dashDisplayRatio);
     }
-    public void UpdateAmmoDisplay(int ammo,int maxAmmo,float ratio)
+    public void UpdateScoreCardTacticalDisplay(int tacticalCount)
     {
-
+        tacticalDisplay.GetComponent<TacticalDisplayScript>().UpdateTacticalDisplay(tacticalCount);
     }
     public bool GetIsAlive()
     {

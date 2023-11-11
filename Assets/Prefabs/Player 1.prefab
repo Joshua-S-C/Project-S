@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4520434702925753319}
   - component: {fileID: 1768998313123742131}
   - component: {fileID: 2942032710066624433}
+  - component: {fileID: -7453665608523240960}
   - component: {fileID: 7142563590122074466}
   m_Layer: 0
   m_Name: Player 1
@@ -236,6 +237,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 27dea2b8-5cdb-4111-ac5f-493fee3be380
     m_ActionName: Player/SwitchWeapon[/XInputControllerWindows/buttonNorth,/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7453665608523240960}
+        m_TargetAssemblyTypeName: PlayerTacticalScript, Assembly-CSharp
+        m_MethodName: ThrowTacticalPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a6bf5fc1-687a-4c43-8461-f360b2a2e145
+    m_ActionName: Player/ThrowTactical[/Keyboard/e,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -345,6 +362,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7142563590122074466}
+--- !u!114 &-7453665608523240960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847649137517549569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd24a1e7b3b31b648b10d2aee2411908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tacticalPrefab: {fileID: 8850900721509105196, guid: 753482756e3d57a48820a5d578908cb8, type: 3}
 --- !u!95 &7142563590122074466
 Animator:
   serializedVersion: 5
