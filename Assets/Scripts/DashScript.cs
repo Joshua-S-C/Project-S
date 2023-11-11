@@ -8,9 +8,9 @@ public class DashScript : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing;
-    public float dashDistance;
+    public float dashDuration;
     public float dashSpeed;
-    private float dashDistanceCovered;
+    private float dashTimer;
     private Vector2 dashDirection;
     private Vector2 dashLastPosition;
     public float dashCooldown;
@@ -31,14 +31,14 @@ public class DashScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        DashMovementTracker();
+        DashMovement();
     }
     public void Dash(Vector2 input)
     {
         if(canDash && input != Vector2.zero)
         {
             dashDirection = (new Vector2(input.x, input.y)).normalized;
-            dashDistanceCovered = 0;
+            dashTimer = dashDuration;
             canDash = false;
             isDashing = true;
             GetComponent<PlayerScript>().DisableMovement();
@@ -46,15 +46,15 @@ public class DashScript : MonoBehaviour
         }
         
     }
-    private void DashMovementTracker()
+    private void DashMovement()
     {
         if (isDashing)
         {
             RB.velocity = dashDirection * dashSpeed;
-            dashDistanceCovered += ((Vector2)transform.position - dashLastPosition).magnitude;
+            dashTimer -= Time.deltaTime;
             dashLastPosition = transform.position;
             scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardCooldowns(gameObject);
-            if (dashDistanceCovered > dashDistance)
+            if (dashTimer <= 0)
             {
                 StopDash();
                 RB.velocity = dashEndSpeed * dashDirection;
@@ -99,7 +99,7 @@ public class DashScript : MonoBehaviour
         float ratio = 0;
         if(isDashing)
         {
-            ratio = dashDistanceCovered / dashDistance;
+            ratio = dashTimer / dashDuration;
         }
         if(!canDash)
         {

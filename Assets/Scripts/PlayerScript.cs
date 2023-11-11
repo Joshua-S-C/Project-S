@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
 
     private GameObject weaponOrigin;
     private Rigidbody2D RB;
-    private Vector2 MovementInput;
+    private Vector2 movementInput;
     private bool isGrounded;
     private bool canDoubleJump;
     private int jumpCount;
@@ -180,7 +180,7 @@ public class PlayerScript : MonoBehaviour
     
     private void Movement()
     {
-        if(MovementInput == Vector2.zero && !myDashScript.GetIsDashing())
+        if(movementInput.x == 0 && !myDashScript.GetIsDashing())
         {
             //deccelerates player when no movement is done
             Decceleration();
@@ -198,25 +198,25 @@ public class PlayerScript : MonoBehaviour
                 accelerationAmount = airAccelerationSpeed * Time.deltaTime;
             }
 
-            float hypotheticalXVelocity = RB.velocity.x + (accelerationAmount * MovementInput.x);
+            float hypotheticalXVelocity = RB.velocity.x + (accelerationAmount * movementInput.x);
 
             
             
 
             //checks if player speed is higher than the stick axis
-            if ((MovementInput.x > 0 && hypotheticalXVelocity > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && hypotheticalXVelocity < maxSpeed * MovementInput.x))
+            if ((movementInput.x > 0 && hypotheticalXVelocity > maxSpeed * movementInput.x) || (movementInput.x < 0 && hypotheticalXVelocity < maxSpeed * movementInput.x))
             {
-                if((MovementInput.x > 0 && RB.velocity.x < maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x > maxSpeed * MovementInput.x))
+                if((movementInput.x > 0 && RB.velocity.x < maxSpeed * movementInput.x) || (movementInput.x < 0 && RB.velocity.x > maxSpeed * movementInput.x))
                 {
-                    RB.velocity = new Vector2(maxSpeed * MovementInput.x, RB.velocity.y);
+                    RB.velocity = new Vector2(maxSpeed * movementInput.x, RB.velocity.y);
                 }
                 
             }
-            if ((MovementInput.x > 0 && RB.velocity.x > maxSpeed * MovementInput.x) || (MovementInput.x < 0 && RB.velocity.x < maxSpeed * MovementInput.x))
+            if ((movementInput.x > 0 && RB.velocity.x > maxSpeed * movementInput.x) || (movementInput.x < 0 && RB.velocity.x < maxSpeed * movementInput.x))
             {
-                if (CheckCanMove() && (Mathf.Sign(MovementInput.x) != Mathf.Sign(RB.velocity.x)))
+                if (CheckCanMove() && (Mathf.Sign(movementInput.x) != Mathf.Sign(RB.velocity.x)))
                 {
-                    RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+                    RB.velocity += (Vector2)transform.right * accelerationAmount * movementInput;
                 }
             }
             else
@@ -224,7 +224,7 @@ public class PlayerScript : MonoBehaviour
                 //moves player based on buttons pressed
                 if (CheckCanMove())
                 {
-                    RB.velocity += (Vector2)transform.right * accelerationAmount * MovementInput;
+                    RB.velocity += (Vector2)transform.right * accelerationAmount * movementInput;
                 }
             }
 
@@ -315,8 +315,8 @@ public class PlayerScript : MonoBehaviour
     //methods performed when input is pressed
     public void MovePressed(InputAction.CallbackContext context)
     {
-        MovementInput = context.ReadValue<Vector2>();
-        if(MovementInput.y < -0.9)
+        movementInput = context.ReadValue<Vector2>();
+        if (movementInput.y < -0.9 || (GetComponent<PlayerInput>().devices[0].description.deviceClass == "Keyboard" && movementInput.y < 0))
         {
             IgnoreOneWayPlatforms(true);
             
@@ -343,7 +343,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(context.performed)
         {
-            myDashScript.Dash(MovementInput);
+            myDashScript.Dash(movementInput);
         }
     }
     public void UseWeaponPressed(InputAction.CallbackContext context)
