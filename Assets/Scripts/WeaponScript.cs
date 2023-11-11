@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
@@ -29,6 +30,10 @@ public class WeaponScript : MonoBehaviour
     private float reloadTimer;
     private bool isReloading;
 
+    public float equipTime;
+    private float equipTimer;
+    private bool isEquipping;
+
     private bool isCurrenWeapon;
 
     public string weaponType;
@@ -45,6 +50,7 @@ public class WeaponScript : MonoBehaviour
         ReloadTimerTick();
         FireDelayTimerTick();
         BurstTimer();
+        EquipTimerTick();
     }
     private void StartFireDelayTimer()
     {
@@ -71,13 +77,29 @@ public class WeaponScript : MonoBehaviour
             GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardAmmoDisplay(player, (int)currentAmmo, (int)maxAmmo, GetCurrentRatio());
         }
         GetComponent<SpriteRenderer>().enabled = true;
-        StartFireDelayTimer();
+        StartEquipTimer();
     }
     public void SwitchOffWeapon()
     {
         isCurrenWeapon = false;
         GetComponent<SpriteRenderer>().enabled = false;
         
+    }
+    private void StartEquipTimer()
+    {
+        isEquipping = true;
+        equipTimer = equipTime;
+    }
+    private void EquipTimerTick()
+    {
+        if(isEquipping)
+        {
+            equipTimer -= Time.deltaTime;
+            if(equipTimer <= 0)
+            {
+                isEquipping = false;
+            }
+        }
     }
     private float GetCurrentRatio()
     {
@@ -117,7 +139,7 @@ public class WeaponScript : MonoBehaviour
     }
     private bool CheckCanShoot()
     {
-        if(isFireDelayTimer || isReloading)
+        if(isFireDelayTimer || isReloading || isEquipping)
         {
             return false;
         }

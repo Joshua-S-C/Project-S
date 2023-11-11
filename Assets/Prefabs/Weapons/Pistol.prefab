@@ -111,6 +111,7 @@ MonoBehaviour:
   spreadArc: 0
   auto: 0
   reloadTime: 1
+  equipTime: 0.1
   weaponType: gun
 --- !u!114 &5929626568791924698
 MonoBehaviour:

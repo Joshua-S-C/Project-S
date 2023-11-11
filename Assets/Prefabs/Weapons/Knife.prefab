@@ -114,6 +114,7 @@ MonoBehaviour:
   spreadArc: 0
   auto: 0
   reloadTime: 0
+  equipTime: 0.1
   weaponType: sword
 --- !u!95 &2459204961462406053
 Animator:
