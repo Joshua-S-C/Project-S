@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitDelay: 0
   hitWindow: 0.1
-  swingDelay: 0.5
+  swingDelay: 0.28
 --- !u!61 &-5113823670108980304
 BoxCollider2D:
   m_ObjectHideFlags: 0

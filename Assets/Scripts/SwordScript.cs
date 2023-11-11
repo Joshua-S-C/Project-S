@@ -39,9 +39,10 @@ public class SwordScript : MonoBehaviour
     }
     public void Swing(GameObject player)
     {
-        animator.SetTrigger("Swing");
+        
         if (!isSwingDelay)
         {
+            animator.SetTrigger("Swing");
             myPlayer = player;
             
             StartSwingDelayTimer();
