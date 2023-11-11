@@ -337,7 +337,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void AimPressed(InputAction.CallbackContext context)
     {
-        aimDirection = context.ReadValue<Vector2>();
+        aimDirection = context.ReadValue<Vector2>().normalized;
     }
     public void DashPressed(InputAction.CallbackContext context)
     {

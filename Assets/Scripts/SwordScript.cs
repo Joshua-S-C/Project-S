@@ -115,8 +115,7 @@ public class SwordScript : MonoBehaviour
             hitObjects.Add(newObject);
             newObject.GetComponent<PlayerScript>().PlayerHit();
             newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
-            Vector2 directrion = myPlayer.GetComponent<PlayerScript>().GetAimDirection();
-            newObject.GetComponent<Rigidbody2D>().velocity += directrion * GetComponent<WeaponScript>().GetKnockback();
+            newObject.GetComponent<Rigidbody2D>().velocity = transform.parent.right * GetComponent<WeaponScript>().GetKnockback();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
