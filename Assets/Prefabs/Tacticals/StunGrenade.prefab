@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yDivideAmount: 3
   stunDuration: 0.2
   explosionEffect: stun
 --- !u!1 &5750506772790316542
@@ -250,6 +249,7 @@ MonoBehaviour:
   explodable: 1
   explodeOnImpact: 1
   stickOnImpact: 0
+  stickExplodeDelay: 0
   triggerable: 0
   explosionKnockback: 0
   explosionDelay: 2.5
@@ -257,4 +257,5 @@ MonoBehaviour:
   tacticalCount: 2
   tacticalCooldown: 4
   impactKnockback: 0
-  stunDuration: 1.5
+  stunDuration: 0.7
+  destroyOnContact: 0

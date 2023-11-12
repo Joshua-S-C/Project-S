@@ -12,6 +12,9 @@ public class TacticalScript : MonoBehaviour
     public bool explodable;
     public bool explodeOnImpact;
     public bool stickOnImpact;
+    public float stickExplodeDelay;
+    private float stickExplodeDelayTimer;
+    private bool isStuck;
     public bool triggerable;
     public float explosionKnockback;
     //how long after throw the tactical explodes
@@ -22,6 +25,7 @@ public class TacticalScript : MonoBehaviour
     public float tacticalCooldown;
     public float impactKnockback;
     public float stunDuration;
+    public bool destroyOnContact;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +35,28 @@ public class TacticalScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckOffMap();
         ExplosionTimerTick();
         HitDelayTimerTick();
+        StickExplodeDelayTimerTick();
+    }
+    private void StickExplodeDelayTimerTick()
+    {
+        if(isStuck)
+        {
+            stickExplodeDelayTimer -= Time.deltaTime;
+            if(stickExplodeDelayTimer <= 0)
+            {
+                Explode();
+            }
+        }
+    }
+    private void CheckOffMap()
+    {
+        if (transform.position.magnitude > 40)
+        {
+            Destroy(gameObject);
+        }
     }
     private void HitDelayTimerTick()
     {
@@ -104,6 +128,9 @@ public class TacticalScript : MonoBehaviour
     }
     private void StickToObject(GameObject newObject)
     {
+        isStuck = true;
+        stickExplodeDelayTimer = stickExplodeDelay;
+        transform.rotation = Quaternion.identity;
         transform.SetParent(newObject.transform, true);
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<Collider2D>());
@@ -114,27 +141,36 @@ public class TacticalScript : MonoBehaviour
     {
         newObject.GetComponent<PlayerScript>().PlayerHit();
         newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
-        newObject.GetComponent<Rigidbody2D>().velocity += GetComponent<Rigidbody2D>().velocity.normalized * impactKnockback;
-        Destroy(gameObject);
+        newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * impactKnockback;
+        if(!explodable)
+        {
+            Destroy(gameObject);
+        }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            if(!stickOnImpact)
+
+            if (!stickOnImpact)
             {
                 ImpactKnockback(collision.gameObject);
             }
-            
             if (explodable && explodeOnImpact)
             {
                 Explode();
             }
             
+
         }
         if(stickOnImpact && (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground"))
         {
             StickToObject(collision.gameObject);
+        }
+        if(destroyOnContact && (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground"))
+        {
+            Destroy(gameObject);
         }
     }
 }

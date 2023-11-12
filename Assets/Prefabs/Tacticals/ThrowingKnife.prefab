@@ -175,6 +175,7 @@ MonoBehaviour:
   tacticalCooldown: 3
   impactKnockback: 25
   stunDuration: 0.25
+  destroyOnContact: 1
 --- !u!1 &3750759631337629860
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +256,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yDivideAmount: 3
   stunDuration: 0.2
   explosionEffect: knockback

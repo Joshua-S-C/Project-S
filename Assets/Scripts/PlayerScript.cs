@@ -126,7 +126,15 @@ public class PlayerScript : MonoBehaviour
         movementDisabled = true;
         isMovementDisabledTimer = true;
         movementDisabledTimer = duration;
+        
     }
+    public void StopMovement()
+    {
+        
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+        
+    }
+
     public void DisableMovement()
     {
         movementDisabled = true;

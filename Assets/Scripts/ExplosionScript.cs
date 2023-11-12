@@ -6,7 +6,7 @@ public class ExplosionScript : MonoBehaviour
 {
     private List<GameObject> explodeableObjects;
     private float knockback;
-    public float yDivideAmount;
+    private static float yDivideAmount = 3;
     public float stunDuration;
     public string explosionEffect;
     // Start is called before the first frame update
@@ -23,8 +23,7 @@ public class ExplosionScript : MonoBehaviour
 
     private void ExplodeKnockback()
     {
-
-        for(int i = 0; i < explodeableObjects.Count; i++)
+        for (int i = 0; i < explodeableObjects.Count; i++)
         {
 
             Vector2 distance = explodeableObjects[i].transform.position - transform.position;
@@ -34,6 +33,10 @@ public class ExplosionScript : MonoBehaviour
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity += direction * knockback;
             explodeableObjects[i].GetComponent<PlayerScript>().PlayerHit();
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
+            if(knockback == 0)
+            {
+                explodeableObjects[i].GetComponent<PlayerScript>().StopMovement();
+            }
             
         }
     }
@@ -48,7 +51,7 @@ public class ExplosionScript : MonoBehaviour
     }
     public void Explode()
     {
-        Debug.Log("hit");
+        
         if (explosionEffect == "knockback")
         {
             ExplodeKnockback();
