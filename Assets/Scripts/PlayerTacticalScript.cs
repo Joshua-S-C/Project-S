@@ -102,7 +102,7 @@ public class PlayerTacticalScript : MonoBehaviour
     }
     public void ThrowTacticalPressed(InputAction.CallbackContext context)
     {
-        if (context.performed && tacticalPrefab != null)
+        if (context.performed && tacticalPrefab != null && !GetComponent<PlayerScript>().GetAttackingDisabled())
         {
             if (thrownTactical != null && thrownTactical.GetComponent<TacticalScript>().GetTriggerable())
             {

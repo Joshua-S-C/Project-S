@@ -141,7 +141,7 @@ public class TacticalScript : MonoBehaviour
     {
         newObject.GetComponent<PlayerScript>().PlayerHit();
         newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
-        newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * impactKnockback;
+        newObject.GetComponent<PlayerScript>().DealKnockback((Vector2)transform.right * impactKnockback);
         if(!explodable)
         {
             Destroy(gameObject);

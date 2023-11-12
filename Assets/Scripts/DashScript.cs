@@ -53,7 +53,7 @@ public class DashScript : MonoBehaviour
             RB.velocity = dashDirection * dashSpeed;
             dashTimer -= Time.deltaTime;
             dashLastPosition = transform.position;
-            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardCooldowns(gameObject);
+            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardDashCooldown(gameObject);
             if (dashTimer <= 0)
             {
                 StopDash();
@@ -67,7 +67,7 @@ public class DashScript : MonoBehaviour
     {
         if (!canDash && !isDashing)
         {
-            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardCooldowns(gameObject);
+            scoreBoardManager.GetComponent<ScoreboardManagerScript>().UpdateScoreCardDashCooldown(gameObject);
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer <= 0)
             {

@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     public int lives;
     private Vector2 respawnPosition;
 
+    private bool attackingDisabled;
     private bool movementDisabled;
     private bool isMovementDisabledTimer;
     private float movementDisabledTimer;
@@ -71,7 +72,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void UseWeapon()
     {
-        if(usingWeaponPressed)
+        if(usingWeaponPressed && !attackingDisabled)
         {
             
             weaponOrigin.GetComponent<WeaponOriginScript>().UseWeapon(gameObject,usingWeaponPressedDown);
@@ -143,6 +144,22 @@ public class PlayerScript : MonoBehaviour
     {
         movementDisabled = false;
     }
+    public void DisableEverything()
+    {
+        movementDisabled = true;
+        attackingDisabled = true;
+        weaponOrigin.GetComponent<WeaponOriginScript>().Disable();
+    }
+    public void EnableEverything()
+    {
+        movementDisabled = false;
+        attackingDisabled = false;
+        weaponOrigin.GetComponent<WeaponOriginScript>().Enable();
+    }
+    public bool GetAttackingDisabled()
+    {
+        return attackingDisabled;
+    }
     public void PlayerHit()
     {
         myDashScript.StopDash();
@@ -158,6 +175,14 @@ public class PlayerScript : MonoBehaviour
                 isMovementDisabledTimer = false;
             }
         }
+    }
+    public void DealKnockback(Vector2 knockback)
+    {
+        if(!transform.Find("Shield").GetComponent<PlayerShieldScript>().GetIsShielding())
+        {
+            RB.velocity += knockback;
+        }
+        
     }
     private void Jump()
     {
@@ -349,7 +374,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void DashPressed(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(context.performed && !movementDisabled)
         {
             myDashScript.Dash(movementInput);
         }
@@ -373,7 +398,17 @@ public class PlayerScript : MonoBehaviour
             weaponOrigin.GetComponent<WeaponOriginScript>().SwitchWeapon();
         }
     }
-
+    public void ShieldButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            transform.Find("Shield").GetComponent<PlayerShieldScript>().StartShielding();
+        }
+        else if(context.canceled)
+        {
+            transform.Find("Shield").GetComponent<PlayerShieldScript>().StopShielding();
+        }
+    }
     private void CheckUseWeaponPressedKeyboard()
     {
         

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9181313612248838721}
   m_Layer: 7
   m_Name: ThrowingKnife
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   explodable: 0
   explodeOnImpact: 0
   stickOnImpact: 0
+  stickExplodeDelay: 0
   triggerable: 0
   explosionKnockback: 0
   explosionDelay: 2.5

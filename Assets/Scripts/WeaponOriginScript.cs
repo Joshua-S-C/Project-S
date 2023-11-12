@@ -13,6 +13,8 @@ public class WeaponOriginScript : MonoBehaviour
 
     public List<GameObject> weaponList;
     public List<GameObject> secondaryWeaponList;
+
+    private bool disabled;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,17 @@ public class WeaponOriginScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    public void Disable()
+    {
+        primaryWeapon.SetActive(false);
+        disabled = true;
+    }
+    public void Enable()
+    {
+        primaryWeapon.SetActive(true);
+        disabled = false;
     }
     private void SetupWeapons()
     {
@@ -41,24 +53,32 @@ public class WeaponOriginScript : MonoBehaviour
     }
     public void UseWeapon(GameObject player,bool pressedDown)
     {
-        //player is passed to prevent the bullet from hitting the player that fired it
-        currentWeapon.GetComponent<WeaponScript>().Use(player,pressedDown);
+        if(!disabled)
+        {
+            //player is passed to prevent the bullet from hitting the player that fired it
+            currentWeapon.GetComponent<WeaponScript>().Use(player, pressedDown);
+        }
+        
     }    
     public void SwitchWeapon()
     {
-        if(currentWeaponName == "Primary")
+        if(!disabled)
         {
-            secondaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
-            primaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
-            currentWeapon = secondaryWeapon;
-            currentWeaponName = "Secondary";
+            if (currentWeaponName == "Primary")
+            {
+                secondaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+                primaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
+                currentWeapon = secondaryWeapon;
+                currentWeaponName = "Secondary";
+            }
+            else if (currentWeaponName == "Secondary")
+            {
+                primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
+                secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
+                currentWeapon = primaryWeapon;
+                currentWeaponName = "Primary";
+            }
         }
-        else if (currentWeaponName == "Secondary")
-        {
-            primaryWeapon.GetComponent<WeaponScript>().SwitchToWeapon();
-            secondaryWeapon.GetComponent<WeaponScript>().SwitchOffWeapon();
-            currentWeapon = primaryWeapon;
-            currentWeaponName = "Primary";
-        }
+        
     }
 }

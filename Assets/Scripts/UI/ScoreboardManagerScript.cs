@@ -87,12 +87,20 @@ public class ScoreboardManagerScript : MonoBehaviour
 
 
     }
-    public void UpdateScoreCardCooldowns(GameObject player)
+    public void UpdateScoreCardDashCooldown(GameObject player)
     {
         ScoreCard card = GetScoreCard(player);
         if (card != null)
         {
-            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardCooldowns(player.GetComponent<DashScript>().CalculateDashRatio());
+            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardDashCooldown(player.GetComponent<DashScript>().CalculateDashRatio());
+        }
+    }
+    public void UpdateScoreCardShieldCooldown(GameObject player,float ratio)
+    {
+        ScoreCard card = GetScoreCard(player);
+        if (card != null)
+        {
+            card.GetScoreCard().GetComponent<ScoreCardScript>().UpdateScoreCardShieldCooldown(ratio);
         }
     }
     private GameObject GetFirstAlivePlayer()

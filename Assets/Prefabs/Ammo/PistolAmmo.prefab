@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96d9f551af42a445ad9dd114683c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yDivideAmount: 3
   stunDuration: 0
   explosionEffect: 
 --- !u!1 &1962007472775313099
@@ -98,7 +97,7 @@ GameObject:
   - component: {fileID: 6975110788014587953}
   m_Layer: 7
   m_Name: PistolAmmo
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
