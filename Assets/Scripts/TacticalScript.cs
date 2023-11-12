@@ -5,7 +5,7 @@ using UnityEngine;
 public class TacticalScript : MonoBehaviour
 {
     private bool canHitSelfPlayer = false;
-    private float selfPlayerHitDelay = 0.1f;
+    private float selfPlayerHitDelay = 0.3f;
     private GameObject selfPlayer;
     public float throwDelay;
     public float throwSpeed;
@@ -114,14 +114,18 @@ public class TacticalScript : MonoBehaviour
     {
         newObject.GetComponent<PlayerScript>().PlayerHit();
         newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
-        newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * impactKnockback;
+        newObject.GetComponent<Rigidbody2D>().velocity += GetComponent<Rigidbody2D>().velocity.normalized * impactKnockback;
         Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            ImpactKnockback(collision.gameObject);
+            if(!stickOnImpact)
+            {
+                ImpactKnockback(collision.gameObject);
+            }
+            
             if (explodable && explodeOnImpact)
             {
                 Explode();

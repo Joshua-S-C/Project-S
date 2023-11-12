@@ -57,7 +57,7 @@ public class AmmoScript : MonoBehaviour
         {
             newObject.GetComponent<PlayerScript>().PlayerHit();
             newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
-            newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * knockback;
+            newObject.GetComponent<Rigidbody2D>().velocity += GetComponent<Rigidbody2D>().velocity.normalized * knockback;
         }
         Destroy(gameObject);
     }

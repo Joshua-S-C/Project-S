@@ -93,7 +93,6 @@ public class PlayerTacticalScript : MonoBehaviour
             thrownTactical = Instantiate(tacticalPrefab, GameObject.Find("ShotThings").transform);
             thrownTactical.GetComponent<TacticalScript>().SetThrowPlayer(gameObject);
             thrownTactical.transform.position = transform.position;
-            thrownTactical.transform.rotation = transform.Find("WeaponOrigin").rotation;
             thrownTactical.GetComponent<Rigidbody2D>().velocity = transform.Find("WeaponOrigin").right * thrownTactical.GetComponent<TacticalScript>().GetThrowSpeed();
             StartCooldown();
             GameObject.Find("ScoreboardManager").GetComponent<ScoreboardManagerScript>().UpdateScoreCardTacticalDisplay(gameObject, currentTacticalCount);

@@ -41,13 +41,15 @@ public class ExplosionScript : MonoBehaviour
     {
         for (int i = 0; i < explodeableObjects.Count; i++)
         {
+
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
-            explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
+            explodeableObjects[i].GetComponent<PlayerScript>().PlayerHit();
         }
     }
     public void Explode()
     {
-        if(explosionEffect == "knockback")
+        Debug.Log("hit");
+        if (explosionEffect == "knockback")
         {
             ExplodeKnockback();
         }
