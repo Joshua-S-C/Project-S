@@ -374,7 +374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd24a1e7b3b31b648b10d2aee2411908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tacticalPrefab: {fileID: 8850900721509105196, guid: 753482756e3d57a48820a5d578908cb8, type: 3}
+  tacticalPrefab: {fileID: 2497043054783012949, guid: 7f772c9d152987f4fbf922b60593c2ba, type: 3}
+  tacticalList:
+  - {fileID: 4918115144743903869, guid: d350c95bf0e64974aae9e358d08e8a4f, type: 3}
+  - {fileID: 8850900721509105196, guid: 753482756e3d57a48820a5d578908cb8, type: 3}
+  - {fileID: 5750506772790316542, guid: 9e0a3880fab30974a874c6964a3838a9, type: 3}
+  - {fileID: 2497043054783012949, guid: 7f772c9d152987f4fbf922b60593c2ba, type: 3}
 --- !u!95 &7142563590122074466
 Animator:
   serializedVersion: 5

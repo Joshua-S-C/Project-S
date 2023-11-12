@@ -32,6 +32,7 @@ public class ExplosionScript : MonoBehaviour
             direction = new Vector2(direction.x, direction.y / yDivideAmount);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity = new Vector2(0, explodeableObjects[i].GetComponent<Rigidbody2D>().velocity.y);
             explodeableObjects[i].GetComponent<Rigidbody2D>().velocity += direction * knockback;
+            explodeableObjects[i].GetComponent<PlayerScript>().PlayerHit();
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
             
         }
@@ -40,6 +41,7 @@ public class ExplosionScript : MonoBehaviour
     {
         for (int i = 0; i < explodeableObjects.Count; i++)
         {
+            explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
         }
     }
@@ -51,7 +53,7 @@ public class ExplosionScript : MonoBehaviour
         }
         else if(explosionEffect == "stun")
         {
-
+            ExplodeStun();
         }
     }
     public void SetExplosionKnockback(float newKnockback)

@@ -7,9 +7,11 @@ public class TacticalScript : MonoBehaviour
     private bool canHitSelfPlayer = false;
     private float selfPlayerHitDelay = 0.1f;
     private GameObject selfPlayer;
+    public float throwDelay;
     public float throwSpeed;
     public bool explodable;
     public bool explodeOnImpact;
+    public bool stickOnImpact;
     public bool triggerable;
     public float explosionKnockback;
     //how long after throw the tactical explodes
@@ -18,6 +20,8 @@ public class TacticalScript : MonoBehaviour
     public bool explosionTimerEnabled;
     public int tacticalCount;
     public float tacticalCooldown;
+    public float impactKnockback;
+    public float stunDuration;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +42,11 @@ public class TacticalScript : MonoBehaviour
             if (selfPlayerHitDelay <= 0)
             {
                 canHitSelfPlayer = true;
-                Physics2D.IgnoreCollision(selfPlayer.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+                if(GetComponent<Collider2D>() != null)
+                {
+                    Physics2D.IgnoreCollision(selfPlayer.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+                }
+                
             }
         }
     }
@@ -56,22 +64,26 @@ public class TacticalScript : MonoBehaviour
     private void Explode()
     {
         transform.GetChild(0).GetComponent<ExplosionScript>().SetExplosionKnockback(explosionKnockback);
+        transform.GetChild(0).GetComponent<ExplosionScript>().SetStunDuration(stunDuration);
         transform.GetChild(0).GetComponent<ExplosionScript>().Explode();
         Destroy(gameObject);
     }
     public void TriggerTactical()
     {
-        if(triggerable)
-        {
+
             if(explodable)
             {
                 Explode();
             }
-        }
+        
     }
     public float GetThrowSpeed()
     {
         return throwSpeed;
+    }
+    public float GetThrowDelay()
+    {
+        return throwDelay;
     }
     public void SetThrowPlayer(GameObject player)
     {
@@ -86,14 +98,39 @@ public class TacticalScript : MonoBehaviour
     {
         return tacticalCooldown;
     }
+    public bool GetTriggerable()
+    {
+        return triggerable;
+    }
+    private void StickToObject(GameObject newObject)
+    {
+        transform.SetParent(newObject.transform, true);
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<Collider2D>());
+        
+
+    }
+    private void ImpactKnockback(GameObject newObject)
+    {
+        newObject.GetComponent<PlayerScript>().PlayerHit();
+        newObject.GetComponent<PlayerScript>().DisableMovement(0.25f);
+        newObject.GetComponent<Rigidbody2D>().velocity += (Vector2)transform.right * impactKnockback;
+        Destroy(gameObject);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
+            ImpactKnockback(collision.gameObject);
             if (explodable && explodeOnImpact)
             {
                 Explode();
             }
+            
+        }
+        if(stickOnImpact && (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground"))
+        {
+            StickToObject(collision.gameObject);
         }
     }
 }
