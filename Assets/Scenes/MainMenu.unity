@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelName: Stage
-  SettingsMenu: Settings Menu
-  MainMenu: Main Menu
-  CharacterSelectMenu: Character Select
+  SettingsMenu: SettingsMenu
+  MainMenu: MainMenu
+  CharacterSelectMenu: AbilitySelect
 --- !u!4 &329882560
 Transform:
   m_ObjectHideFlags: 0
