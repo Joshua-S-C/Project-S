@@ -8,6 +8,7 @@ public class PlayerManagerScript : MonoBehaviour
     public GameObject scoreCardManager;
     public List<Color> playerColors = new List<Color>();
     public List<Vector2> playerStartPositions = new List<Vector2>();
+    public bool stage;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +22,13 @@ public class PlayerManagerScript : MonoBehaviour
     }
     public void PlayerJoinedGame(GameObject player)
     {
-        int index = player.GetComponent<PlayerInput>().playerIndex;
-        player.GetComponent<SpriteRenderer>().color = playerColors[index];
-        player.transform.position = playerStartPositions[index];
-        scoreCardManager.GetComponent<ScoreboardManagerScript>().AddScoreCard(player);
+        if (stage)
+        {
+            int index = player.GetComponent<PlayerInput>().playerIndex;
+            player.GetComponent<SpriteRenderer>().color = playerColors[index];
+            player.transform.position = playerStartPositions[index];
+            scoreCardManager.GetComponent<ScoreboardManagerScript>().AddScoreCard(player);
+        }
+        
     }
 }
