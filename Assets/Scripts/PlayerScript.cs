@@ -184,6 +184,10 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
+    public void StopXMovement()
+    {
+        RB.velocity = new Vector2(0, RB.velocity.y);
+    }
     private void Jump()
     {
         if(isGrounded)
