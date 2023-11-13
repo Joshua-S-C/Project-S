@@ -142,17 +142,21 @@ public class PlayerScript : MonoBehaviour
     }
     public void EnableMovement()
     {
-        movementDisabled = false;
+        if(!isMovementDisabledTimer)
+        {
+            movementDisabled = false;
+        }
+        
     }
     public void DisableEverything()
     {
-        movementDisabled = true;
+        DisableMovement();
         attackingDisabled = true;
         weaponOrigin.GetComponent<WeaponOriginScript>().Disable();
     }
     public void EnableEverything()
     {
-        movementDisabled = false;
+        EnableMovement();
         attackingDisabled = false;
         weaponOrigin.GetComponent<WeaponOriginScript>().Enable();
     }
@@ -184,10 +188,6 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
-    public void StopXMovement()
-    {
-        RB.velocity = new Vector2(0, RB.velocity.y);
-    }
     private void Jump()
     {
         if(isGrounded)
@@ -216,12 +216,12 @@ public class PlayerScript : MonoBehaviour
     
     private void Movement()
     {
-        if(movementInput.x == 0 && !myDashScript.GetIsDashing())
+        if((movementInput.x == 0 || movementDisabled) && !myDashScript.GetIsDashing())
         {
             //deccelerates player when no movement is done
             Decceleration();
         }
-        else
+        else if(CheckCanMove())
         {
             float accelerationAmount;
 
@@ -260,6 +260,7 @@ public class PlayerScript : MonoBehaviour
                 //moves player based on buttons pressed
                 if (CheckCanMove())
                 {
+
                     RB.velocity += (Vector2)transform.right * accelerationAmount * movementInput;
                 }
             }
@@ -378,7 +379,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void DashPressed(InputAction.CallbackContext context)
     {
-        if(context.performed && !movementDisabled)
+        if(context.performed && CheckCanMove())
         {
             myDashScript.Dash(movementInput);
         }

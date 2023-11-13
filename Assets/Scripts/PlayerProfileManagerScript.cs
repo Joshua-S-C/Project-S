@@ -53,11 +53,9 @@ public class PlayerProfileManagerScript : MonoBehaviour
     {
         for (int i = 0;i < profiles.Count;i++)
         {
-            PlayerInput input = GetComponent<PlayerInputManager>().JoinPlayer(i, i, "", profiles[i].GetInputDevice());
-            if(SceneManager.GetActiveScene().name != "Main Menu")
-            {
-                GetComponent<PlayerManagerScript>().PlayerJoinedGame(input.gameObject);
-            }
+            PlayerInput input = GetComponent<PlayerInputManager>().JoinPlayer(i, 0, "", profiles[i].GetInputDevice());
+            GetComponent<PlayerManagerScript>().PlayerJoinedGame(input.gameObject);
+            
             
         }
     }

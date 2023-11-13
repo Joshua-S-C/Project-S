@@ -55,7 +55,7 @@ public class ScoreboardManagerScript : MonoBehaviour
                 scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(0, scoreCardYPosition);
                 scoreCards[2].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(120, scoreCardYPosition);
             }
-            if (scoreCards.Count == 3)
+            if (scoreCards.Count == 4)
             {
                 scoreCards[0].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, scoreCardYPosition);
                 scoreCards[1].GetScoreCard().GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, scoreCardYPosition);

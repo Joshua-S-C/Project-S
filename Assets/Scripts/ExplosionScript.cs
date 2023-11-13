@@ -29,7 +29,7 @@ public class ExplosionScript : MonoBehaviour
             Vector2 distance = explodeableObjects[i].transform.position - transform.position;
             Vector2 direction = distance.normalized;
             direction = new Vector2(direction.x, direction.y / yDivideAmount);
-            explodeableObjects[i].GetComponent<PlayerScript>().StopXMovement();
+            explodeableObjects[i].GetComponent<PlayerScript>().StopMovement();
             explodeableObjects[i].GetComponent<PlayerScript>().DealKnockback(direction * knockback);
             explodeableObjects[i].GetComponent<PlayerScript>().PlayerHit();
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
@@ -44,7 +44,6 @@ public class ExplosionScript : MonoBehaviour
     {
         for (int i = 0; i < explodeableObjects.Count; i++)
         {
-
             explodeableObjects[i].GetComponent<PlayerScript>().DisableMovement(stunDuration);
             explodeableObjects[i].GetComponent<PlayerScript>().PlayerHit();
         }
@@ -72,7 +71,7 @@ public class ExplosionScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && !explodeableObjects.Contains(collision.gameObject))
         {
             explodeableObjects.Add(collision.gameObject);
         }

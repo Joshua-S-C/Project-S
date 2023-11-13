@@ -28,12 +28,12 @@ public class WeaponOriginScript : MonoBehaviour
     }
     public void Disable()
     {
-        primaryWeapon.SetActive(false);
+        currentWeapon.SetActive(false);
         disabled = true;
     }
     public void Enable()
     {
-        primaryWeapon.SetActive(true);
+        currentWeapon.SetActive(true);
         disabled = false;
     }
     private void SetupWeapons()
