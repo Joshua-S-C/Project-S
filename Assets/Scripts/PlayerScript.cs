@@ -190,27 +190,31 @@ public class PlayerScript : MonoBehaviour
     }
     private void Jump()
     {
-        if(isGrounded)
+        if(!movementDisabled)
         {
-            RB.velocity += (Vector2)transform.up * jumpHeight;
-        }
-        else
-        {
-            if(canDoubleJump)
+            if (isGrounded)
             {
-                canDoubleJump = false;
-                if(RB.velocity.y > 0)
+                RB.velocity += (Vector2)transform.up * jumpHeight;
+            }
+            else
+            {
+                if (canDoubleJump)
                 {
-                    RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight + RB.velocity.y);
+                    canDoubleJump = false;
+                    if (RB.velocity.y > 0)
+                    {
+                        RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight + RB.velocity.y);
+                    }
+                    else
+                    {
+                        RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight);
+                    }
+
+                    GetComponent<PlayerParticleScript>().DoubleJumpParticle();
                 }
-                else
-                {
-                    RB.velocity = new Vector2(RB.velocity.x, doubleJumpHeight);
-                }
-                
-                GetComponent<PlayerParticleScript>().DoubleJumpParticle();
             }
         }
+        
         
     }
     

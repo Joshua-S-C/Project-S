@@ -62,7 +62,6 @@ public class PlayerShieldScript : MonoBehaviour
     {
         if(!canShield)
         {
-            Debug.Log(ShieldUseCooldownTimer);
             ShieldUseCooldownTimer -= Time.deltaTime;
             if(ShieldUseCooldownTimer <= 0)
             {
@@ -103,7 +102,6 @@ public class PlayerShieldScript : MonoBehaviour
     {
         if(collision.tag == "projectile" && isShielding)
         {
-            Debug.Log("hit");
             Destroy(collision.gameObject);
         }
     }

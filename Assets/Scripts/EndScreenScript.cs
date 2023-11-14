@@ -37,7 +37,7 @@ public class EndScreenScript : MonoBehaviour
         endScreenTimer -= Time.deltaTime;
         if(endScreenTimer <= 0)
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
     public static void EndScreen(int index)
