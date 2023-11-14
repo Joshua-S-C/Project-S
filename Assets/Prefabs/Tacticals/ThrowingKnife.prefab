@@ -174,7 +174,7 @@ MonoBehaviour:
   explosionTimerEnabled: 0
   tacticalCount: 4
   tacticalCooldown: 3
-  impactKnockback: 25
+  impactKnockback: 40
   stunDuration: 0.25
   destroyOnContact: 1
 --- !u!1 &3750759631337629860

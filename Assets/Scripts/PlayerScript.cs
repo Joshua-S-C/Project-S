@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     private bool canDoubleJump;
     private int jumpCount;
     private Vector2 aimDirection;
+    private Vector2 aimVector;
     private Vector2 lastAimDirection;
     public float jumpHeight;
     public float doubleJumpHeight;
@@ -124,9 +125,13 @@ public class PlayerScript : MonoBehaviour
     }
     public void DisableMovement(float duration)
     {
-        movementDisabled = true;
-        isMovementDisabledTimer = true;
-        movementDisabledTimer = duration;
+        if(duration > movementDisabledTimer)
+        {
+            movementDisabled = true;
+            isMovementDisabledTimer = true;
+            movementDisabledTimer = duration;
+        }
+        
         
     }
     public void StopMovement()
@@ -309,15 +314,10 @@ public class PlayerScript : MonoBehaviour
     }    
     private void UpdateAim()
     {
-        if(aimDirection == Vector2.zero)
-        {
-            weaponOrigin.transform.right = lastAimDirection;
-        }
-        else
-        {
+
             weaponOrigin.transform.right = aimDirection;
             lastAimDirection = aimDirection;
-        }
+        
         
     }
     private void IgnoreOneWayPlatforms(bool ignore)
@@ -379,7 +379,12 @@ public class PlayerScript : MonoBehaviour
     }
     public void AimPressed(InputAction.CallbackContext context)
     {
-        aimDirection = context.ReadValue<Vector2>().normalized;
+        aimVector = context.ReadValue<Vector2>();
+        aimDirection = aimVector.normalized;
+        if(aimDirection == Vector2.zero)
+        {
+            aimDirection = lastAimDirection;
+        }
     }
     public void DashPressed(InputAction.CallbackContext context)
     {
