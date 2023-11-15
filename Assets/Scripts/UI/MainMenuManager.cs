@@ -14,8 +14,9 @@ public class MainMenuManager : MonoBehaviour
     
     public void OpenStage()
     {
-        if(PlayerProfileManagerScript.GetProfileCount() >= 2)
+        if (PlayerProfileManagerScript.GetProfileCount() >= 2)
         {
+            
             SceneManager.LoadScene(LevelName);
         }
         else

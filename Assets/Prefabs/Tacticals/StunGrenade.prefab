@@ -257,5 +257,5 @@ MonoBehaviour:
   tacticalCount: 2
   tacticalCooldown: 4
   impactKnockback: 0
-  stunDuration: 1.2
+  stunDuration: 1
   destroyOnContact: 0
