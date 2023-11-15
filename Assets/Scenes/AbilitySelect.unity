@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ca703265044884a9bd7f31fcb1ba3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notEnoughPlayersTextPrefab: {fileID: 1393859995729585733, guid: 99e9d8954c6680d46964e7161e2311dc, type: 3}
   LevelName: Stage
   SettingsMenu: SettingsMenu
   MainMenu: MainMenu
@@ -4260,6 +4261,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2207654004637015137, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207654004637015137, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewPlayerJoinedGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207654004637015137, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3446791886454832550, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
       propertyPath: m_Name
       value: PlayerManager
@@ -5129,7 +5142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146.71, y: -204.54}
+  m_AnchoredPosition: {x: -69, y: -174}
   m_SizeDelta: {x: 668.59, y: 74.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1935162206
@@ -5179,14 +5192,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5215,7 +5228,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 169.3052, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5277,7 +5290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
