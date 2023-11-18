@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 20
-  doubleJumpHeight: 10
+  doubleJumpHeight: 20
   groundAccelerationSpeed: 110
   airAccelerationSpeed: 60
   maxSpeed: 15
