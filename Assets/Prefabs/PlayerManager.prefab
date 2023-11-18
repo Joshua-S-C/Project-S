@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5517afb4ce81c546a635565acdf5ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerJoinedMessage: {fileID: 6091559533336031379, guid: c386f3c89770ff6439a0697c9f84889b, type: 3}
   scoreCardManager: {fileID: 0}
   playerColors:
   - {r: 0.9829347, g: 1, b: 0, a: 1}
@@ -126,3 +127,4 @@ MonoBehaviour:
   - {x: 15, y: 0}
   - {x: 7.5, y: 0}
   - {x: -7.5, y: 0}
+  stage: 0

@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class PlayerProfileManagerScript : MonoBehaviour
 {
     private static List<PlayerProfile> profiles = new List<PlayerProfile>();
+    private static List<int> newPlayersAddedIndex;
     // Start is called before the first frame update
     void Start()
     {
+        newPlayersAddedIndex = new List<int>();
         if (profiles.Count > 0)
         {
             InitializePlayers();
@@ -19,7 +21,15 @@ public class PlayerProfileManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AddedPlayerMessages();
+    }
+    private void AddedPlayerMessages()
+    {
+        for(int i = 0;i < newPlayersAddedIndex.Count;i++)
+        {
+            GetComponent<PlayerManagerScript>().NewPlayerJoinedGame(newPlayersAddedIndex[i]);
+        }
+        newPlayersAddedIndex = new List<int>();
     }
 
     //adds a new device profile if that inputdevice is unique
@@ -27,6 +37,7 @@ public class PlayerProfileManagerScript : MonoBehaviour
     {
         if (input.devices.Count > 0 && !ContainsDevice(input.devices[0]))
         {
+            newPlayersAddedIndex.Add(input.playerIndex);
             string name = "Player " + (input.playerIndex + 1);
             profiles.Add(new PlayerProfile(input.devices[0],name));
         }
@@ -61,6 +72,10 @@ public class PlayerProfileManagerScript : MonoBehaviour
     public static PlayerProfile GetProfile(int index)
     {
         return profiles[index];
+    }
+    public static int GetProfileCount()
+    {
+        return profiles.Count;
     }
 }
 
