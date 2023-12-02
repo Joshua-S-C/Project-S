@@ -1707,7 +1707,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 190108527}
   m_Template: {fileID: 194722392}
   m_CaptionText: {fileID: 114883905}
@@ -1732,7 +1732,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1677509285}
+        m_TargetAssemblyTypeName: PlayerProfileManagerScript, Assembly-CSharp
+        m_MethodName: SetPlayer4Primary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &190108527
 MonoBehaviour:
@@ -2305,7 +2317,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 242633568}
   m_Template: {fileID: 1477339589}
   m_CaptionText: {fileID: 1117867224}
@@ -2785,7 +2797,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 277645829}
   m_Template: {fileID: 1566183203}
   m_CaptionText: {fileID: 2111009272}
@@ -4089,6 +4101,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &468120590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468120592}
+  - component: {fileID: 468120591}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &468120591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468120590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c6acca933889b4d9c7e8cea18cd58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDropdowns:
+  - primary: {fileID: 0}
+    secondary: {fileID: 0}
+    tactical: {fileID: 0}
+  - primary: {fileID: 0}
+    secondary: {fileID: 0}
+    tactical: {fileID: 0}
+  - primary: {fileID: 0}
+    secondary: {fileID: 0}
+    tactical: {fileID: 0}
+  - primary: {fileID: 0}
+    secondary: {fileID: 0}
+    tactical: {fileID: 0}
+--- !u!4 &468120592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468120590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 529.3679, y: 300.76328, z: 1.0504527}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &469266232
 GameObject:
   m_ObjectHideFlags: 0
@@ -4626,7 +4695,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 539879520}
   m_Template: {fileID: 1670620368}
   m_CaptionText: {fileID: 90202708}
@@ -5923,7 +5992,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 670396707}
   m_Template: {fileID: 1931083804}
   m_CaptionText: {fileID: 832573473}
@@ -7849,7 +7918,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 884805463}
   m_Template: {fileID: 295139147}
   m_CaptionText: {fileID: 1926676103}
@@ -7874,7 +7943,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1677509285}
+        m_TargetAssemblyTypeName: PlayerProfileManagerScript, Assembly-CSharp
+        m_MethodName: SetPlayer3Primary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &884805463
 MonoBehaviour:
@@ -8037,7 +8118,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 898988045}
   m_Template: {fileID: 874662658}
   m_CaptionText: {fileID: 1270609050}
@@ -8394,7 +8475,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 949728481}
   m_Template: {fileID: 741126271}
   m_CaptionText: {fileID: 1998361779}
@@ -8419,7 +8500,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1677509285}
+        m_TargetAssemblyTypeName: PlayerProfileManagerScript, Assembly-CSharp
+        m_MethodName: SetPlayer1Primary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &949728481
 MonoBehaviour:
@@ -8701,7 +8794,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 993640040}
   m_Template: {fileID: 203022861}
   m_CaptionText: {fileID: 2077305489}
@@ -8722,7 +8815,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1677509285}
+        m_TargetAssemblyTypeName: PlayerProfileManagerScript, Assembly-CSharp
+        m_MethodName: SetPlayerOnePrimary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &993640040
 MonoBehaviour:
@@ -8976,7 +9081,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1002908026}
   m_Template: {fileID: 86365042}
   m_CaptionText: {fileID: 1479189083}
@@ -12756,7 +12861,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1605494596}
   m_Template: {fileID: 700110412}
   m_CaptionText: {fileID: 2128032504}
@@ -13332,6 +13437,106 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[0].primary
+      value: 
+      objectReference: {fileID: 949728480}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[1].primary
+      value: 
+      objectReference: {fileID: 2125822642}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[2].primary
+      value: 
+      objectReference: {fileID: 884805462}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[3].primary
+      value: 
+      objectReference: {fileID: 190108526}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[0].primary
+      value: 
+      objectReference: {fileID: 949728480}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[1].primary
+      value: 
+      objectReference: {fileID: 2125822642}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[2].primary
+      value: 
+      objectReference: {fileID: 884805462}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[3].primary
+      value: 
+      objectReference: {fileID: 190108526}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[0].tactical
+      value: 
+      objectReference: {fileID: 993640039}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[1].tactical
+      value: 
+      objectReference: {fileID: 1605494595}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[2].tactical
+      value: 
+      objectReference: {fileID: 898988044}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[3].tactical
+      value: 
+      objectReference: {fileID: 1002908025}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[0].tactical
+      value: 
+      objectReference: {fileID: 993640039}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[1].tactical
+      value: 
+      objectReference: {fileID: 1605494595}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[2].tactical
+      value: 
+      objectReference: {fileID: 898988044}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[3].tactical
+      value: 
+      objectReference: {fileID: 1002908025}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[0].secondary
+      value: 
+      objectReference: {fileID: 539879519}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[1].secondary
+      value: 
+      objectReference: {fileID: 242633567}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[2].secondary
+      value: 
+      objectReference: {fileID: 670396706}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerDropdowns.Array.data[3].secondary
+      value: 
+      objectReference: {fileID: 277645828}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[0].secondary
+      value: 
+      objectReference: {fileID: 539879519}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[1].secondary
+      value: 
+      objectReference: {fileID: 242633567}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[2].secondary
+      value: 
+      objectReference: {fileID: 670396706}
+    - target: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+      propertyPath: playerdropdowns.Array.data[3].secondary
+      value: 
+      objectReference: {fileID: 277645828}
     - target: {fileID: 3446791886454832550, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
       propertyPath: m_Name
       value: PlayerManager
@@ -13381,6 +13586,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+--- !u!114 &1677509285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 677684710098539416, guid: be7f670a450938641bd47cbe7be427c7, type: 3}
+  m_PrefabInstance: {fileID: 1677509284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c6acca933889b4d9c7e8cea18cd58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687189659
 GameObject:
   m_ObjectHideFlags: 0
@@ -15799,7 +16015,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88
+  m_fontSize: 87.85
   m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17507,7 +17723,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2125822643}
   m_Template: {fileID: 1176715246}
   m_CaptionText: {fileID: 356897680}
@@ -17532,7 +17748,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1677509285}
+        m_TargetAssemblyTypeName: PlayerProfileManagerScript, Assembly-CSharp
+        m_MethodName: SetPlayer2Primary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &2125822643
 MonoBehaviour:
@@ -17790,3 +18018,4 @@ SceneRoots:
   - {fileID: 115768092}
   - {fileID: 1936745600}
   - {fileID: 1677509284}
+  - {fileID: 468120592}
