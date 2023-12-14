@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1768998313123742131}
   - component: {fileID: 2942032710066624433}
   - component: {fileID: -7453665608523240960}
-  - component: {fileID: 7142563590122074466}
+  - component: {fileID: 704706113999116568}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: 1422244877
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -600808522, guid: 3c24a18ecb72dbc4dac30848048d7f8e, type: 3}
+  m_Sprite: {fileID: -1198195035, guid: feee6f364ea2fcb4daa4b73e0cc0fce1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc4763e7ccdab74ab15d19a0a559520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7142563590122074466}
+  animator: {fileID: 0}
 --- !u!114 &-7453665608523240960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   - {fileID: 8850900721509105196, guid: 753482756e3d57a48820a5d578908cb8, type: 3}
   - {fileID: 5750506772790316542, guid: 9e0a3880fab30974a874c6964a3838a9, type: 3}
   - {fileID: 2497043054783012949, guid: 7f772c9d152987f4fbf922b60593c2ba, type: 3}
---- !u!95 &7142563590122074466
+--- !u!95 &704706113999116568
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
